@@ -1,5 +1,0 @@
-
-read_verilog "../../source/Goldschmidt_Convergence_Division.v" "../../source/HCC_Arithmetic_Processor.v" "../../source/Generic_BRAM.v" "../../source/Memory_Backplane.v" "../../source/Hart_Core.v" "../../source/ORC_R32IMAZicsr.v"
-synth_ice40 -dsp -json ORC_R32I_syn.json -top ORC_R32IMAZicsr
-##JSON
-write_json ORC_R32I_syn.json
