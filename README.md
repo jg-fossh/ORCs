@@ -2,32 +2,11 @@
 **O**pen-source **R**ISC-V **C**ores
 This project aims to create a collection of _harts_ complaint to the RISC-V ISA. Unlike other projects, this one does not seek to create the smallest risc-v implementation but rather experiment on implementations the risc-v ISA on accessible or popular FPGA dev boards focusing on performance first and resource cost second.
 
-## ORC R32I
+## ORC_R32IMA_BRAM
 
 ### Abstract
-RV32I un-privileged hart implementation directory. Contains the source code, simulation files and examples for synthesis and place-and-route.
 
-This project is currently under progress. It uses previous work from the DarkRISCV project (https://github.com/darklife/darkriscv) as a starting reference.  Kept the concept of having two copies of the general purpose register for a faster access. The instruction interface was swap from a streaming interface to a memory interface(Wishbone pipeline). The counter and decoder have change so much the look very different now.
-
-The ORC_R32I/source folder contains more on the specifications and the verilog code. For resource cost see the results in ORC_R32I/build/ 
-
-## Goal 
-
-A 32-bit RISC-V ISA integer (I) extensions implementation.
-
-### Current State
-
-It is complete but optimizations from the ORC_R32IMAZicsr will be flown down eventually. This core is no longer the priority.
-
-## ORC_R32IMAZicsr
-
-### Goal
-
-A 32-bit RISC-V ISA implementation capable of booting a modern OS (Linux, BSD...).
-
-### Requirements 
-Support ISA's : integer (I), multiplication and division (M), CSR instructions (Z) and atomics (A) extensions
-Supports User, Supervisor and Machine mode privilege profiles.
+This is an implementation of the "I" and "M" sections of the risc-v ISA. General registers are implemented using BRAMs. The only CSRs implemented are cycle and instr in order to be able to run the benchmark.
 
 ### Performance
 
@@ -80,15 +59,7 @@ _**Note:**_ The fetch of the instruction is included in the table, unlike the li
 
 #### To Do
 
-1.  ~~Currently adapting ORC's R32I per lessons learned.~~
-2.  ~~Finishing the implementation of the M instructions.~~
-3.  ~~Start implementing the CSRs starting with the counters in order to be able to run the pico32 Dhrystone benchmark.~~
-4.  Update the code to use lutrams so save 1 clock.
-5.  Get rid of the HCC processor and separate the MUL multiplier from the DIV multiplier. The DSP block savings is not justifying the cost in clocks.
-6.  Add a code for promiscuous fetching to get next instruction while waiting for one to be done.
-7.  Finish implementing the CSRs, and FENCE.
-8.  Implement the "A" instructions.
-9.  Add more documentation 
+1.  Add more documentation
 
 
 _**Note:**_ 
