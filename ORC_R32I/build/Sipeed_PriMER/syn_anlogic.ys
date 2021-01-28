@@ -1,5 +1,0 @@
-read_verilog "../../source/ORC_R32I.v"
-synth_anlogic -top ORC_R32I -retime
-write_verilog full.v
-#JSON
-#write_json ORC_R32I_syn.json
