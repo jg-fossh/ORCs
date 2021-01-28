@@ -2,7 +2,7 @@
 **O**pen-source **R**ISC-V **C**ores
 This project aims to create a collection of _harts_ complaint to the RISC-V ISA. Unlike other projects, this one does not seek to create the smallest risc-v implementation but rather experiment on implementations the risc-v ISA on accessible or popular FPGA dev boards focusing on performance first and resource cost second.
 
-## ORC_R32IMA (BRAM)
+## ORC_R32IM (BRAM)
 
 ### Abstract
 
