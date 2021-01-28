@@ -2,7 +2,7 @@
 **O**pen-source **R**ISC-V **C**ores
 This project aims to create a collection of _harts_ complaint to the RISC-V ISA. Unlike other projects, this one does not seek to create the smallest risc-v implementation but rather experiment on implementations the risc-v ISA on accessible or popular FPGA dev boards focusing on performance first and resource cost second.
 
-## ORC_R32IMA_BRAM
+## ORC_R32IMA (BRAM)
 
 ### Abstract
 
@@ -17,7 +17,7 @@ No two Dhrystone benchmark are the same since this is a compiler/core benchmark.
 Using Dhrystone test bench found in the picorv32 repo (https://github.com/cliffordwolf/picorv32/tree/master/dhrystone) and the same compiled code (hex file) on both for comparison.
 Implementation  | Runs | User Time | Cycles Per Instruction | Dhrystones Per Second Per MHz | DMIPS Per MHz
 :-------------- | :--: | :-------: | :--------------------: | :---------------------------: | :-----------:
-ORC_R32IMAZicsr | 100  | 78301 cycles, 26025 insn  | 3.099 | 1264 | 0.725
+ORC_R32IM (BRAM) | 100  | 78301 cycles, 26025 insn  | 3.099 | 1264 | 0.725
 picorv32        | 100  | 145013 cycles, 26136 insn | 5.548 |  689 | 0.392
 
 #### Clocks Per Instructions
