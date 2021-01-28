@@ -19,27 +19,7 @@ A 32-bit RISC-V ISA integer (I) extensions implementation.
 
 It is complete but optimizations from the ORC_R32IMAZicsr will be flown down eventually. This core is no longer the priority.
 
-## ORC_R32IMAZicsr
-
-### Goal
-
-A 32-bit RISC-V ISA implementation capable of booting a modern OS (Linux, BSD...).
-
-### Requirements 
-Support ISA's : integer (I), multiplication and division (M), CSR instructions (Z) and atomics (A) extensions
-Supports User, Supervisor and Machine mode privilege profiles.
-
 ### Performance
-
-#### Dhrystone Benchmark (Version 2.1)
-
-No two Dhrystone benchmark are the same since this is a compiler/core benchmark. Therefore a third party core was benchmarked and included for comparison.
-
-Using Dhrystone test bench found in the picorv32 repo (https://github.com/cliffordwolf/picorv32/tree/master/dhrystone) and the same compiled code (hex file) on both for comparison.
-Implementation  | Runs | User Time | Cycles Per Instruction | Dhrystones Per Second Per MHz | DMIPS Per MHz
-:-------------- | :--: | :-------: | :--------------------: | :---------------------------: | :-----------:
-ORC_R32IMAZicsr | 100  | 78301 cycles, 26025 insn  | 3.099 | 1264 | 0.725
-picorv32        | 100  | 145013 cycles, 26136 insn | 5.548 |  689 | 0.392
 
 #### Clocks Per Instructions
  _________\ Pipeline Stage <br> Instruction \ ___________ | Fetch | Decode | Register | Response | Total Clocks
@@ -53,12 +33,8 @@ R-R         |   ✔️   |    ✔️   |     ✔️    |          |      3
 R-I         |   ✔️   |    ✔️   |     ✔️    |          |      3
 Load        |   ✔️   |    ✔️   |     ✔️    |    ✔️     |      4*
 Store       |   ✔️   |    ✔️   |     ✔️    |    ✔️     |      4*
-Multiply    |   ✔️   |    ✔️   |     ✔️    |    ✔️     |      4
-Division    |   ✔️   |    ✔️   |     ✔️    |    ✔️     |      4 to 18**
 
 _*minimum_
-
-_**minimum, spcecial cases like dividing by one or zero or when the factors are the same. But on average the divider takes 6 Goldschmidt steps which are implemented in two half steps plus the numbers need to be conditioned for the divider. For these reasons division takes 18 clock on average._
 
 _**Note:**_ The fetch of the instruction is included in the table, unlike the literature of other projects out there since it can actually impact the overall performance(that is why some implementations in the wild have look-ahead fetching or fetch two instructions at a time, to give some examples).
 
@@ -68,11 +44,6 @@ _**Note:**_ The fetch of the instruction is included in the table, unlike the li
 
  ![ORC_R32IM_Wave](wave.png)
 
-
-##### This is a waveform snippet of the division module.
-
- ![ORC_R32IM_Wave](div.png)
-
 ### Current State
 
 **_Under Progress_**
@@ -80,20 +51,12 @@ _**Note:**_ The fetch of the instruction is included in the table, unlike the li
 
 #### To Do
 
-1.  ~~Currently adapting ORC's R32I per lessons learned.~~
-2.  ~~Finishing the implementation of the M instructions.~~
-3.  ~~Start implementing the CSRs starting with the counters in order to be able to run the pico32 Dhrystone benchmark.~~
-4.  Update the code to use lutrams so save 1 clock.
-5.  Get rid of the HCC processor and separate the MUL multiplier from the DIV multiplier. The DSP block savings is not justifying the cost in clocks.
-6.  Add a code for promiscuous fetching to get next instruction while waiting for one to be done.
-7.  Finish implementing the CSRs, and FENCE.
-8.  Implement the "A" instructions.
-9.  Add more documentation 
+1.  Add more documentation 
 
 
 _**Note:**_ 
 
-To synthesize the code for the Sipeed PriMER ANLOGIC FPGA BOARD simply set the parameter `P_IS_ANLOGIC` to 1. When using yosys or Xilinx using Vivado set the parameter to 0. This parameter is declared at the top level wrapper, ORC_R32IMAZicsr.v.
+To synthesize the code for the Sipeed PriMER ANLOGIC FPGA BOARD simply set the parameter `P_IS_ANLOGIC` to 1. When using yosys or Xilinx using Vivado set the parameter to 0. This parameter is declared at the top level wrapper, ORC_R32I.v.
 
 Sadly the division uses more DSP blocks than what the Lattice 5k has to offer and the ANLOGIC FPGA in the SiPEED board only has enough DSP block for a pipelined division. I will create a faster non-pipeline division module for larger fpgas like the A7 or S7 found in the Arty boards. Also Vivado results show the most critical timing path is associated to the DSP blocks, therefore there is a risk of having to reduce the clock rate for a non-pipelined version.
 
