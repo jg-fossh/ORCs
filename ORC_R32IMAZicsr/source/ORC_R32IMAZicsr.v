@@ -33,7 +33,7 @@
 // File name     : ORC_R32IMAZicsr.v
 // Author        : Jose R Garcia
 // Created       : 2020/11/04 23:20:43
-// Last modified : 2021/01/24 21:23:02
+// Last modified : 2021/01/28 19:08:33
 // Project Name  : ORCs
 // Module Name   : ORC_R32IMAZicsr
 // Description   : The ORC_R32IMAZicsr is the top level wrapper.
@@ -49,7 +49,7 @@ module ORC_R32IMAZicsr #(
   parameter integer P_MEMORY_DEPTH       = 32, //
   parameter integer P_MEMORY_HAS_INIT    = 0,  // 0=No init file, 1=loads memory init file
   parameter         P_MEMORY_FILE        = 0,  // File name and directory "./example.txt"
-  parameter integer P_DIV_ACCURACY       = 9,  // Divisor bits '1' to indicate convergence.
+  parameter integer P_DIV_ACCURACY       = 12,  // Divisor bits '1' to indicate convergence.
   parameter integer P_DIV_ROUND_LEVEL    = 3,  // result bits '1' to indicate round up result.
   parameter integer P_IS_ANLOGIC         = 0   //
 )(

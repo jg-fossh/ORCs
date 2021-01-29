@@ -33,7 +33,7 @@
 // File name     : Goldschmidt_Integer_Divider_2CPS.v
 // Author        : Jose R Garcia
 // Created       : 2021/01/23 11:23:01
-// Last modified : 2021/01/23 13:27:19
+// Last modified : 2021/01/29 00:13:29
 // Project Name  : ORCs
 // Module Name   : Goldschmidt_Integer_Divider_2CPS
 // Description   : The Goldschmidt divider is an iterative method
@@ -82,8 +82,8 @@ module Goldschmidt_Integer_Divider_2CPS #(
   // Internal Parameter Declarations
   ///////////////////////////////////////////////////////////////////////////////
   // Misc.
-  localparam [P_GID_FACTORS_MSB:0] L_GID_NUMBER_TWO       = 2;
-  localparam [P_GID_FACTORS_MSB:0] L_GID_ZERO_FILLER      = 0;
+  localparam [P_GID_FACTORS_MSB:0] L_GID_NUMBER_TWO  = 2;
+  localparam [P_GID_FACTORS_MSB:0] L_GID_ZERO_FILLER = 0;
   //
   localparam integer L_GID_MUL_FACTORS_MSB  = ((P_GID_FACTORS_MSB+1)*2)-1;
   localparam integer L_GID_STEP_PRODUCT_MSB = ((L_GID_MUL_FACTORS_MSB+1)+P_GID_FACTORS_MSB);
@@ -106,10 +106,8 @@ module Goldschmidt_Integer_Divider_2CPS #(
   localparam [P_GID_FACTORS_MSB:0] L_REG_E10000000 = 429; // X.0000001
   localparam [P_GID_FACTORS_MSB:0] L_REG_E100000000 = 43; // X.00000001
   localparam [P_GID_FACTORS_MSB:0] L_REG_E1000000000 = 4; // X.000000001
-  // Divisor convergence threshold
-  localparam [P_GID_ACCURACY_LVL-1:0] L_CONVERGENCE_THRESHOLD = -1;
   // Round up bit limits
-  localparam integer L_GID_ROUND_LSB = L_GID_RESULT_LSB-3-P_GID_ROUND_UP_LVL;
+  localparam integer L_GID_ROUND_LSB = L_GID_RESULT_LSB-1-P_GID_ROUND_UP_LVL;
   
   ///////////////////////////////////////////////////////////////////////////////
   // Internal Signals Declarations
@@ -136,7 +134,7 @@ module Goldschmidt_Integer_Divider_2CPS #(
   wire                           w_converged         = &r_multiplicand[P_GID_FACTORS_MSB:P_GID_FACTORS_MSB-P_GID_ACCURACY_LVL]; // is it 0.9xxx...?
   reg                            r_converged;
   // Result Registers Write Signals
-  wire w_rounder = i_product[L_GID_RESULT_LSB-1] & (&i_product[(L_GID_RESULT_LSB-3):L_GID_ROUND_LSB]);
+  wire                       w_rounder   = &i_product[(L_GID_RESULT_LSB-1):L_GID_ROUND_LSB];
   wire [P_GID_FACTORS_MSB:0] w_quotient  = r_converged==1'b0 ? r_dividend : 
                                              w_rounder==1'b1 ? (i_product[L_GID_RESULT_MSB:L_GID_RESULT_LSB]+1) :
                                              i_product[L_GID_RESULT_MSB:L_GID_RESULT_LSB];
@@ -317,9 +315,12 @@ module Goldschmidt_Integer_Divider_2CPS #(
         S_HALF_STEP_TWO : begin
           if (w_converged == 1'b1 && r_calculate_remainder == 1'b1) begin
             // Convert the remainder from decimal fraction to a natural number
-            r_multiplicand  <= (i_product[L_GID_RESULT_LSB-1] & (&i_product[(L_GID_RESULT_LSB-3):L_GID_RESULT_LSB-5]) ? 
-                                 {L_GID_ZERO_FILLER, L_GID_ZERO_FILLER} :
-                                 {L_GID_ZERO_FILLER, i_product[L_GID_MUL_FACTORS_MSB:P_GID_FACTORS_MSB+1]});
+            if (w_rounder == 1'b1) begin
+              r_multiplicand  <= {L_GID_ZERO_FILLER, L_GID_ZERO_FILLER};
+            end
+            else begin
+              r_multiplicand <= {L_GID_ZERO_FILLER, i_product[L_GID_RESULT_LSB-1:P_GID_FACTORS_MSB+1]};
+            end
             r_multiplier    <= {r_divisor, L_GID_ZERO_FILLER};
             r_converged     <= 1'b1;
             r_divider_state <= S_REMAINDER_TO_NATURAL;
@@ -345,12 +346,12 @@ module Goldschmidt_Integer_Divider_2CPS #(
       endcase
     end
   end
+  // WB Valid/Ready 
+  assign o_slave_ack = r_div_write_stb;
   // Result Registers Write Access
   assign o_master_div_write_data = w_result;
   // Multiplication Processor Access
   assign o_multiplicand = r_multiplicand;
   assign o_multiplier   = r_multiplier;
-  // WB Valid/Ready 
-  assign o_slave_ack = r_div_write_stb;
 
 endmodule // Goldschmidt_Integer_Divider_2CPS
