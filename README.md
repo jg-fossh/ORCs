@@ -15,10 +15,10 @@ This is an implementation of the "I" and "M" sections of the risc-v ISA. General
 No two Dhrystone benchmark are the same since this is a compiler/core benchmark. Therefore a third party core was benchmarked and included for comparison.
 
 Using Dhrystone test bench found in the picorv32 repo (https://github.com/cliffordwolf/picorv32/tree/master/dhrystone) and the same compiled code (hex file) on both for comparison.
-Implementation  | Runs | User Time | Cycles Per Instruction | Dhrystones Per Second Per MHz | DMIPS Per MHz
-:-------------- | :--: | :-------: | :--------------------: | :---------------------------: | :-----------:
-ORC_R32IM (BRAM) | 100  | 78301 cycles, 26025 insn  | 3.099 | 1264 | 0.725
-picorv32        | 100  | 145013 cycles, 26136 insn | 5.548 |  689 | 0.392
+Implementation          | Runs | User Time | Cycles Per Instruction | Dhrystones Per Second Per MHz | DMIPS Per MHz
+:---------------------- | :--: | :-------: | :--------------------: | :---------------------------: | :-----------:
+ORC_R32IM (BRAM)        | 100  | 78602 cycles, 26136 insn  | 3.007 | 1272 | 0.724
+picorv32 (no look ahead)| 100  | 145013 cycles, 26136 insn | 5.548 |  689 | 0.392
 
 #### Clocks Per Instructions
  _________\ Pipeline Stage <br> Instruction \ ___________ | Fetch | Decode | Register | Response | Total Clocks
