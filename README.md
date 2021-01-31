@@ -1,9 +1,9 @@
 
-## ORC_R32IM
+## ORC_R32I
 
 ### Abstract
 
-A 32-bit RISC-V ISA I and M instructions implementation.
+A 32-bit RISC-V ISA I instructions implementation.
 
 ### Performance
 
