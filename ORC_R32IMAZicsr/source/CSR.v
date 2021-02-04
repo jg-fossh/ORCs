@@ -33,7 +33,7 @@
 // File name     : CSR.v
 // Author        : Jose R Garcia
 // Created       : 2020/12/06 00:33:28
-// Last modified : 2021/01/28 10:48:30
+// Last modified : 2021/02/02 23:09:35
 // Project Name  : ORCs
 // Module Name   : CSR
 // Description   : CSR and Counters.
@@ -48,10 +48,11 @@ module CSR (
   // CSR Interface
   input i_csr_instr_decoded_stb, // Indicates an instruction was decode.
   // WB Interface
-  input         i_csr_read_stb,  //
-  input  [3:0]  i_csr_read_addr, //
-  output        o_csr_read_ack,  //
-  output [31:0] o_csr_read_data  // 
+  input         i_slave_csr_read_stb,  //
+  input  [3:0]  i_slave_csr_read_addr, //
+  //
+  output        o_master_csr_write_stb,  //
+  output [31:0] o_master_csr_write_data  // 
 );
   ///////////////////////////////////////////////////////////////////////////////
   // Internal Parameter Declarations
@@ -108,33 +109,28 @@ module CSR (
       r_csr_read_ack  <= 1'b0;
     end
     else begin
-      if (i_csr_read_stb == 1'b1) begin
+      if (i_slave_csr_read_stb == 1'b1) begin
 		    case (1'b1)
-		    	i_csr_read_addr[0] : begin
+		    	i_slave_csr_read_addr[0] : begin
 		    		r_csr_read_data <= r_cycle_count[31:0];
           end
-		    	i_csr_read_addr[1] : begin
+		    	i_slave_csr_read_addr[1] : begin
 		    		r_csr_read_data <= r_cycle_count[63:32];
           end
-		    	i_csr_read_addr[2] : begin
+		    	i_slave_csr_read_addr[2] : begin
 		    		r_csr_read_data <= r_instr_count[31:0];
           end
-          i_csr_read_addr[3] : begin
+          i_slave_csr_read_addr[3] : begin
 		    		r_csr_read_data <= r_instr_count[63:32];
           end
 		    endcase
       end
       
-      if (i_csr_read_stb == 1'b1 && r_csr_read_ack == 1'b0) begin
-        r_csr_read_ack <= 1'b1;
-      end
-      else begin
-        r_csr_read_ack <= 1'b0;
-      end
+      r_csr_read_ack <= i_slave_csr_read_stb;
     end
   end
   // 
-  assign o_csr_read_ack  = r_csr_read_ack;
-  assign o_csr_read_data = r_csr_read_data;
+  assign o_master_csr_write_stb  = r_csr_read_ack;
+  assign o_master_csr_write_data = r_csr_read_data;
 
 endmodule // CSR

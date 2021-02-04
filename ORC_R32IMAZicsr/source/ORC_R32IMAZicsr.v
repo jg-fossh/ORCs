@@ -33,7 +33,7 @@
 // File name     : ORC_R32IMAZicsr.v
 // Author        : Jose R Garcia
 // Created       : 2020/11/04 23:20:43
-// Last modified : 2021/01/30 14:40:56
+// Last modified : 2021/02/02 23:16:16
 // Project Name  : ORCs
 // Module Name   : ORC_R32IMAZicsr
 // Description   : The ORC_R32IMAZicsr is the top level wrapper.
@@ -88,21 +88,31 @@ module ORC_R32IMAZicsr #(
   wire                       w_core_write_stb;  // WB write enable
   wire [P_MEMORY_ADDR_MSB:0] w_core_write_addr; // WB address
   wire [31:0]                w_core_write_data; // WB data
-  // HCC Processor to Memory_Backplane connecting wires.
-  wire [31:0]                w_hcc_write_data; // WB data
-  // Hart_Core to HCC Processor connecting wires.
-  wire                       w_hcc_stb;
-  wire                       w_hcc_ack;
-  wire                       w_hcc_addr;
-  wire [1:0]                 w_hcc_tga;
-  wire [P_MEMORY_ADDR_MSB:0] w_hcc_factors;
-  wire                       w_hcc_tgd;
-  // CSR
-  wire        w_csr_instr_decoded;
-  wire        w_csr_read_stb;
-  wire [3:0]  w_csr_read_addr;
-  wire        w_csr_read_ack;
-  wire [31:0] w_csr_data;
+  // Hart_Core to MUL Processor connecting wires.
+  wire                       w_mul_stb;
+  wire                       w_mul_ack;
+  wire [1:0]                 w_mul_tga;
+  // MUL Processor to General Regs connecting wires.
+  wire        w_mul_write_stb;
+  wire [31:0] w_mul_write_data;
+  wire        w_mul_write_ack;
+  // Hart_Core to DIV Processor connecting wires.
+  wire       w_div_stb;
+  wire [1:0] w_div_tga;
+  // DIV Processor to General Regs connecting wires.
+  wire                       w_div_write_stb;
+  wire [P_MEMORY_ADDR_MSB:0] w_div_write_addr;
+  wire [31:0]                w_div_write_data;
+  wire                       w_div_write_ack;
+  // Hart_Core to CSR
+  wire       w_csr_instr_decoded;
+  wire       w_csr_read_stb;
+  wire [3:0] w_csr_read_addr;
+  wire       w_csr_read_ack;
+  // CSR to General Regs connecting wires.
+  wire        w_csr_write_stb;
+  wire [31:0] w_csr_write_data;
+  wire        w_csr_write_ack;
   //
   wire [P_MEMORY_ADDR_MSB:0] w_rd;
 
@@ -132,7 +142,7 @@ module ORC_R32IMAZicsr #(
     // Core mem1 WB(pipeline) master Read Interface
     .o_master_core1_read_addr(w_core1_read_addr), // WB address
     .i_master_core1_read_data(w_core1_read_data), // WB data
-    // Core memX WB(pipeline) master Write Interface
+    // Core mem WB(pipeline) master Write Interface
     .o_master_core_write_stb(w_core_write_stb),   // WB write enable
     .o_master_core_write_addr(w_core_write_addr), // WB address
     .o_master_core_write_data(w_core_write_data), // WB data
@@ -147,51 +157,94 @@ module ORC_R32IMAZicsr #(
     .o_master_write_addr(o_master_write_addr), // WB address
     .o_master_write_data(o_master_write_data), // WB data
     .o_master_write_sel(o_master_write_sel),   // WB byte enable
-    // Integer Multiplier and Divider Processing Unit
-    .o_master_hcc_stb(w_hcc_stb),      // WB valid stb
-    .o_master_hcc_addr(w_hcc_addr),    // WB address
-    .o_master_hcc_tga(w_hcc_tga),      // WB address
-    .i_master_hcc_ack(w_hcc_ack),      // WB acknowledge
+    // Integer Multiplier Interface
+    .o_master_mul_stb(w_mul_stb), // WB strobe
+    .o_master_mul_tga(w_mul_tga), // WB address tag
+    // Integer Divider Interface
+    .o_master_div_stb(w_div_stb), // WB strobe
+    .o_master_div_tga(w_div_tga), // WB address tag
+    .i_master_div_ack(w_div_write_stb), // WB acknowledge
     // CSR Interface
     .o_csr_instr_decoded(w_csr_instr_decoded), // Indicates an instruction was decode.
-    .o_csr_read_stb(w_csr_read_stb),   //
-    .o_csr_read_addr(w_csr_read_addr), //
-    .i_csr_read_ack(w_csr_read_ack),   // 
-    // General Purpose Signals
-    .o_rd(w_rd) //
+    .o_csr_read_stb(w_csr_read_stb),           // WB strobe
+    .o_csr_read_addr(w_csr_read_addr),         // WB address
+    .o_rd(w_rd)
   );
 
   ///////////////////////////////////////////////////////////////////////////////
-  // Instance    : HCC Arithmetic Processor
+  // Instance    : MUL Processor
   // Description : A High Computational Cost Arithmetic Processor that handles
   //               multiplication and division operations.
   ///////////////////////////////////////////////////////////////////////////////
-  HCC_Arithmetic_Processor #(
-    31,                // P_HCC_FACTORS_MSB
-    P_DIV_ACCURACY,    // P_HCC_DIV_ACCURACY
-    P_DIV_ROUND_LEVEL, // P_HCC_DIV_ROUND_LVL
-    P_IS_ANLOGIC       // P_HCC_ANLOGIC_MUL
-  ) mul_div_processor (
+  MUL_Processor #(
+    31,          // P_HCC_FACTORS_MSB
+    P_IS_ANLOGIC // P_HCC_ANLOGIC_MUL
+  ) mul_processor (
     // HCC Arithmetic Processor WB Interface
-    .i_slave_hcc_processor_clk(i_clk),               // clock
-    .i_slave_hcc_processor_reset_sync(i_reset_sync), // synchronous reset
-    .i_slave_hcc_processor_stb(w_hcc_stb),           // WB stb, start operation
-    .o_slave_hcc_processor_ack(w_hcc_ack),           // WB acknowledge, operation finished
-    .i_slave_hcc_processor_addr(w_hcc_addr),         // WB address used to indicate mul or div
-    .i_slave_hcc_processor_tga(w_hcc_tga),           // WB address tag used to indicate quotient or remainder
-    // HCC Processor mem0 WB(pipeline) master Read Interface
-    .i_master_hcc0_read_data(w_core0_read_data), // WB data
-    // HCC Processor mem1 WB(pipeline) master Read Interface
-    .i_master_hcc1_read_data(w_core1_read_data), // WB data
-    // HCC Processor mem1 WB(pipeline) master Write Interface
-    .o_master_hcc_write_data(w_hcc_write_data) // WB data
+    .i_clk(i_clk),               // clock
+    .i_reset_sync(i_reset_sync), // synchronous reset
+    //
+    .i_slave_mul_processor_stb(w_mul_stb),  // WB stb, start operation
+    .i_slave_mul_processor_tga(w_mul_tga),  // WB Tag, signed or Unsigned, High or Low bits
+    // mem0 WB(pipeline) master Read Interface
+    .i_master_mul0_read_data(w_core0_read_data), // WB data
+    // mem1 WB(pipeline) master Read Interface
+    .i_master_mul1_read_data(w_core1_read_data), // WB data
+    // MUL Master Write Interface
+    .o_master_mul_write_stb(w_mul_write_stb),  // WB strobe
+    .o_master_mul_write_data(w_mul_write_data) // WB data
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // Instance    : Integer Divider
+  // Description : Instance of a Goldschmidt Division implementation.
+  ///////////////////////////////////////////////////////////////////////////////
+  Goldschmidt_Integer_Divider_2CPS #(
+    31,                // P_GID_FACTORS_MSB
+    P_MEMORY_ADDR_MSB, // P_GID_ADDR_MSB
+    P_DIV_ACCURACY,    // P_GID_ACCURACY_LVL
+    P_DIV_ROUND_LEVEL, // P_GID_ROUND_UP_LVL
+    P_IS_ANLOGIC       // P_GID_ANLOGIC_MUL
+  ) div (
+    // Clock and Reset
+    .i_clk(i_clk),
+    .i_reset_sync(i_reset_sync),
+    // WB Interface
+    .i_slave_stb(w_div_stb),          // start
+    .i_slave_addr(w_core_write_addr), // result destination
+    .i_slave_tga(w_div_tga),          // quotient=0, remainder=1
+    // mem0 WB(pipeline) master Read Interface
+    .i_master_div0_read_data(w_core0_read_data), // WB data
+    // mem1 WB(pipeline) master Read Interface
+    .i_master_div1_read_data(w_core1_read_data), // WB data
+    // mem WB(pipeline) master Write Interface
+    .o_master_div_write_stb(w_div_write_stb),   // WB strobe
+    .o_master_div_write_addr(w_div_write_addr), // WB address
+    .o_master_div_write_data(w_div_write_data) // WB data
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////
+  // Instance    : Configuration and Status Registers
+  // Description : Contains general purpose CSRs.
+  ///////////////////////////////////////////////////////////////////////////////
+  CSR csrs (
+    // Clocks and resets
+    .i_clk(i_clk),               // clock
+    .i_reset_sync(i_reset_sync), // reset
+    // CSR Interface
+    .i_csr_instr_decoded_stb(w_csr_instr_decoded), // Indicates an instruction was decode.
+    //
+    .i_slave_csr_read_stb(w_csr_read_stb),   // WB 
+    .i_slave_csr_read_addr(w_csr_read_addr), // which register
+    // WB(pipeline) Master Write Interface
+    .o_master_csr_write_stb(w_csr_write_stb),  // WB strobe, result
+    .o_master_csr_write_data(w_csr_write_data) // WB data, result
   );
 
   ///////////////////////////////////////////////////////////////////////////////
   // Instance    : Memory_Backplane
   // Description : A memory access controller. Contains general purpose 
-  //               registers, division lookup table, division scratch pad and
-  //               CSRs for the multiple profiles.
+  //               registers,
   ///////////////////////////////////////////////////////////////////////////////
   Memory_Backplane #(
     P_STACK_ADDR,      // P_MEM_STACK_ADDR
@@ -214,26 +267,18 @@ module ORC_R32IMAZicsr #(
     .i_slave_core_write_stb(w_core_write_stb),   // WB write enable
     .i_slave_core_write_addr(w_core_write_addr), // WB address
     .i_slave_core_write_data(w_core_write_data), // WB data
-    // HCC Processor mem1 WB(pipeline) Slave Write Interface
-    .i_slave_hcc_write_stb(w_hcc_ack), // WB write enable
-    .i_slave_hcc_write_addr(w_rd),               // WB address
-    .i_slave_hcc_write_data(w_hcc_write_data),   // WB data
+    // MUL Processor WB(pipeline) Slave Write Interface
+    .i_slave_mul_write_stb(w_mul_write_stb),   // WB write enable
+    .i_slave_mul_write_data(w_mul_write_data), // WB data
+    // DIV Processor WB(pipeline) Slave Write Interface
+    .i_slave_div_write_stb(w_div_write_stb),   // WB write enable
+    .i_slave_div_write_addr(w_div_write_addr), // WB address
+    .i_slave_div_write_data(w_div_write_data), // WB data
     // CSR Slave Write Interface
-    .i_slave_csr_write_stb(w_csr_read_ack), // WB write enable
-    .i_slave_csr_write_addr(w_rd),          // WB address
-    .i_slave_csr_write_data(w_csr_data)     // WB data
+    .i_slave_csr_write_stb(w_csr_write_stb),   // WB write enable
+    .i_slave_csr_write_data(w_csr_write_data), // WB data
+    //
+    .i_rd(w_rd)
   );
-
-CSR csrs (
-  // Clocks and resets
-  .i_clk(i_clk),               // clock
-  .i_reset_sync(i_reset_sync), // reset
-  // CSR Interface
-  .i_csr_instr_decoded_stb(w_csr_instr_decoded), // Indicates an instruction was decode.
-  .i_csr_read_stb(w_csr_read_stb),   // WB 
-  .i_csr_read_addr(w_csr_read_addr), // WB 
-  .o_csr_read_ack(w_csr_read_ack),   // WB 
-  .o_csr_read_data(w_csr_data)       // WB 
-);
 
 endmodule
