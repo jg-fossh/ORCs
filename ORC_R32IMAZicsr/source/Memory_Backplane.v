@@ -33,7 +33,7 @@
 // File name     : Memory_Backplane.v
 // Author        : Jose R Garcia
 // Created       : 2020/12/23 14:17:03
-// Last modified : 2021/01/29 14:58:57
+// Last modified : 2021/02/09 11:07:17
 // Project Name  : ORCs
 // Module Name   : Memory_Backplane
 // Description   : The Memory_Backplane controls access to the DRAMs.
@@ -42,7 +42,7 @@
 //   
 /////////////////////////////////////////////////////////////////////////////////
 module Memory_Backplane #(
-  parameter integer P_MEM_STACK_ADDR   = 0,  // Reg x2 reset value
+  parameter integer P_MEM_STACK_ADDR   = 0, // Reg 0x2 reset value
   parameter integer P_MEM_ADDR_MSB     = 0,
   parameter integer P_MEM_DEPTH        = 0,
   parameter integer P_MEM_WIDTH        = 0,
@@ -62,14 +62,11 @@ module Memory_Backplane #(
   input                    i_slave_core_write_stb,  // WB write enable
   input [P_MEM_ADDR_MSB:0] i_slave_core_write_addr, // WB address
   input [P_MEM_WIDTH-1:0]  i_slave_core_write_data, // WB data
-  // HCC Processor mem WB(pipeline) Slave Write Interface
-  input                    i_slave_hcc_write_stb,  // WB write enable
-  input [P_MEM_ADDR_MSB:0] i_slave_hcc_write_addr, // WB address
-  input [P_MEM_WIDTH-1:0]  i_slave_hcc_write_data, // WB data
   // CSR Slave Write Interface
   input                    i_slave_csr_write_stb,  // WB write enable
-  input [P_MEM_ADDR_MSB:0] i_slave_csr_write_addr, // WB address
-  input [P_MEM_WIDTH-1:0]  i_slave_csr_write_data  // WB data
+  input [P_MEM_WIDTH-1:0]  i_slave_csr_write_data, // WB data
+  //
+  input [P_MEM_ADDR_MSB:0] i_rd //
 );
   ///////////////////////////////////////////////////////////////////////////////
   // Internal Parameter Declarations
@@ -82,18 +79,18 @@ module Memory_Backplane #(
   // General Registers Reset
   reg [L_REG_RESET_INDEX_MSB:0] reset_index; //
   // Write Case
-  wire w_write_enable = ^{i_reset_sync, i_slave_core_write_stb, i_slave_hcc_write_stb, i_slave_csr_write_stb} ? 1'b1 : 1'b0;
+  wire w_write_enable = |{i_reset_sync, i_slave_core_write_stb, i_slave_csr_write_stb};
   // Write Address
   wire [P_MEM_ADDR_MSB:0] w_write_addr = i_reset_sync==1'b1 ? reset_index : 
-                                         i_slave_hcc_write_stb==1'b1 ? i_slave_hcc_write_addr :
-                                         i_slave_csr_write_stb==1'b1 ? i_slave_csr_write_addr :
-                                         i_slave_core_write_addr;
+                                         i_slave_core_write_stb==1'b1 ? i_slave_core_write_addr :
+                                         i_slave_csr_write_stb==1'b1 ? i_rd :
+                                         'h0;
   // Write Data
   wire [P_MEM_WIDTH-1:0] w_write_data = i_reset_sync==1'b1 ? (reset_index==2 ? P_MEM_STACK_ADDR : 'h0) : 
-                                        i_slave_hcc_write_stb==1'b1 ? i_slave_hcc_write_data :
-                                        i_slave_csr_write_stb==1'b1 ? i_slave_csr_write_data :
-                                        i_slave_core_write_data;
-
+                                        i_slave_core_write_stb==1'b1 ? i_slave_core_write_data :
+                                        i_slave_csr_write_stb==1'b1  ? i_slave_csr_write_data :
+                                                                       'h0;
+  
   ///////////////////////////////////////////////////////////////////////////////
   //            ********      Architecture Declaration      ********           //
   ///////////////////////////////////////////////////////////////////////////////
@@ -111,78 +108,77 @@ module Memory_Backplane #(
     end
   end
 
-//  generate
-//    if (P_MEM_ANLOGIC_DRAM == 0) begin
-      // DRAM array duplicated to index source 0 & 1 at same time or individually. 
-      // A fake a dual-port DRAM of sorts.
-      reg [P_MEM_WIDTH-1:0] general_regs0 [0:P_MEM_DEPTH-1];
-      //reg [P_MEM_WIDTH-1:0] general_regs1 [0:P_MEM_DEPTH-1];
 
+  generate
+    if (P_MEM_ANLOGIC_DRAM == 0) begin
+      // Regs
+      reg [P_MEM_WIDTH-1:0] general_regs [0:P_MEM_DEPTH-1];
+      
       ///////////////////////////////////////////////////////////////////////////////
       // Instance    : Register Space Write Controls
       // Description : Selects appropriate index.
       ///////////////////////////////////////////////////////////////////////////////
       always@(posedge i_clk) begin
         if (i_reset_sync == 1'b1) begin
-          general_regs0[reset_index] <= w_write_data;
-          //general_regs1[reset_index] <= w_write_data;
+          general_regs[reset_index] <= w_write_data;
         end
-        else if(w_write_enable == 1'b1) begin
-          // Write Valid Data
-          general_regs0[w_write_addr] <= w_write_data;
-          //general_regs1[w_write_addr] <= w_write_data;
+        else begin
+          if(w_write_enable == 1'b1) begin
+            // Write Valid Data
+            general_regs[w_write_addr] <= w_write_data;
+          end
         end
       end
       // Read Controls
-      assign o_slave_core0_read_data = general_regs0[i_slave_core0_read_addr];
-      assign o_slave_core1_read_data = general_regs0[i_slave_core1_read_addr];
-//    end
-//  endgenerate
+      assign o_slave_core0_read_data = general_regs[i_slave_core0_read_addr];
+      assign o_slave_core1_read_data = general_regs[i_slave_core1_read_addr];
+    end
+  endgenerate
 
-//  generate
-//    if (P_MEM_ANLOGIC_DRAM == 1) begin
-//      ///////////////////////////////////////////////////////////////////////////////
-//      // Instance    : General Purpose Registers 0
-//      // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
-//      ///////////////////////////////////////////////////////////////////////////////
-//	    EG_LOGIC_DRAM #(
-// 	      .INIT_FILE("NONE"),
-//	      .DATA_WIDTH_W(P_MEM_WIDTH),
-//	      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
-//	      .DATA_DEPTH_W(P_MEM_DEPTH),
-//	      .DATA_WIDTH_R(P_MEM_WIDTH),
-//	      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
-//	      .DATA_DEPTH_R(P_MEM_DEPTH)
-//      ) general_regs0 (
-//	      .di(w_write_data),
-//	      .waddr(w_write_addr),
-//	      .wclk(i_clk),
-//	      .we(w_write_enable),
-//	      .do(o_slave_core0_read_data),
-//	      .raddr(i_slave_core0_read_addr)
-//      );
-//      
-//      ///////////////////////////////////////////////////////////////////////////////
-//      // Instance    : General Purpose Registers 1
-//      // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
-//      ///////////////////////////////////////////////////////////////////////////////
-//	    EG_LOGIC_DRAM #(
-// 	      .INIT_FILE("NONE"),
-//	      .DATA_WIDTH_W(P_MEM_WIDTH),
-//	      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
-//	      .DATA_DEPTH_W(P_MEM_DEPTH),
-//	      .DATA_WIDTH_R(P_MEM_WIDTH),
-//	      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
-//	      .DATA_DEPTH_R(P_MEM_DEPTH)
-//      ) general_regs1 (
-//	      .di(w_write_data),
-//	      .waddr(w_write_addr),
-//	      .wclk(i_clk),
-//	      .we(w_write_enable),
-//	      .do(o_slave_core1_read_data),
-//	      .raddr(i_slave_core1_read_addr)
-//      );
-//    end
-//  endgenerate
+generate
+  if (P_MEM_ANLOGIC_DRAM == 1) begin
+    ///////////////////////////////////////////////////////////////////////////////
+    // Instance    : General Purpose Registers 0
+    // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
+    ///////////////////////////////////////////////////////////////////////////////
+    EG_LOGIC_DRAM #(
+      .INIT_FILE("NONE"),
+      .DATA_WIDTH_W(P_MEM_WIDTH),
+      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
+      .DATA_DEPTH_W(P_MEM_DEPTH),
+      .DATA_WIDTH_R(P_MEM_WIDTH),
+      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
+      .DATA_DEPTH_R(P_MEM_DEPTH)
+    ) general_regs0 (
+      .di(w_write_data),
+      .waddr(w_write_addr),
+      .wclk(i_clk),
+      .we(w_write_enable),
+      .do(o_slave_core0_read_data),
+      .raddr(i_slave_core0_read_addr)
+    );
+    
+    ///////////////////////////////////////////////////////////////////////////////
+    // Instance    : General Purpose Registers 1
+    // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
+    ///////////////////////////////////////////////////////////////////////////////
+    EG_LOGIC_DRAM #(
+      .INIT_FILE("NONE"),
+      .DATA_WIDTH_W(P_MEM_WIDTH),
+      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
+      .DATA_DEPTH_W(P_MEM_DEPTH),
+      .DATA_WIDTH_R(P_MEM_WIDTH),
+      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
+      .DATA_DEPTH_R(P_MEM_DEPTH)
+    ) general_regs1 (
+      .di(w_write_data),
+      .waddr(w_write_addr),
+      .wclk(i_clk),
+      .we(w_write_enable),
+      .do(o_slave_core1_read_data),
+      .raddr(i_slave_core1_read_addr)
+    );
+  end
+endgenerate
+
 endmodule
-
