@@ -1,0 +1,156 @@
+[*]
+[*] GTKWave Analyzer v3.3.108 (w)1999-2020 BSI
+[*] Tue Feb  9 14:54:33 2021
+[*]
+[dumpfile] "/home/jota/Documents/HW/HDL_projects/ORC_R32I/ORCs/ORC_R32IMAZicsr/benchmark/dhrystone/testbench_nola.vcd"
+[dumpfile_mtime] "Tue Feb  9 14:54:15 2021"
+[dumpfile_size] 113711405
+[savefile] "/home/jota/Documents/HW/HDL_projects/ORC_R32I/ORCs/ORC_R32IMAZicsr/benchmark/dhrystone/wave.gtkw"
+[timestart] 1092200
+[size] 1366 721
+[pos] -1 -1
+*-16.685326 1110000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] testbench_nola.
+[treeopen] testbench_nola.uut.
+[sst_width] 207
+[signals_width] 299
+[sst_expanded] 1
+[sst_vpaned_height] 186
+@28
+testbench_nola.uut.core.i_clk
+testbench_nola.uut.core.i_reset_sync
+testbench_nola.uut.core.o_inst_read_stb
+testbench_nola.uut.core.i_inst_read_ack
+@22
+testbench_nola.uut.core.i_inst_read_data[31:0]
+testbench_nola.uut.core.i_master_core0_read_data[31:0]
+testbench_nola.uut.core.i_master_core1_read_data[31:0]
+@28
+testbench_nola.uut.core.i_master_read_ack
+@22
+testbench_nola.uut.core.i_master_read_data[31:0]
+@28
+testbench_nola.uut.core.i_master_write_ack
+testbench_nola.uut.core.o_csr_instr_decoded
+@22
+testbench_nola.uut.core.o_csr_read_addr[3:0]
+@28
+testbench_nola.uut.core.o_csr_read_stb
+@22
+testbench_nola.uut.core.o_inst_read_addr[31:0]
+testbench_nola.uut.core.o_master_core0_read_addr[4:0]
+testbench_nola.uut.core.o_master_core1_read_addr[4:0]
+testbench_nola.uut.core.o_master_core_write_addr[4:0]
+testbench_nola.uut.core.o_master_core_write_data[31:0]
+@28
+testbench_nola.uut.core.o_master_core_write_stb
+@22
+testbench_nola.uut.core.o_master_read_addr[31:0]
+@28
+testbench_nola.uut.core.o_master_read_stb
+@22
+testbench_nola.uut.core.o_master_write_addr[31:0]
+testbench_nola.uut.core.o_master_write_data[31:0]
+testbench_nola.uut.core.o_master_write_sel[3:0]
+@28
+testbench_nola.uut.core.o_master_write_stb
+@22
+testbench_nola.uut.core.o_rd[4:0]
+@28
+testbench_nola.uut.core.w_auipc
+testbench_nola.uut.core.w_lui
+testbench_nola.uut.core.w_rii
+testbench_nola.uut.core.w_rro
+testbench_nola.uut.core.w_jalr
+testbench_nola.uut.core.w_bcc
+testbench_nola.uut.core.w_bmux
+testbench_nola.uut.core.w_scc
+testbench_nola.uut.core.w_lcc
+testbench_nola.uut.core.w_csr
+testbench_nola.uut.core.w_ebreak
+testbench_nola.uut.core.w_ecall
+testbench_nola.uut.core.w_fence
+testbench_nola.uut.core.w_jal
+testbench_nola.uut.core.r_decoded_instr
+@22
+testbench_nola.uut.core.r_load_cases[3:0]
+testbench_nola.uut.core.r_master_read_addr[29:0]
+@28
+testbench_nola.uut.core.r_master_read_ready
+@22
+testbench_nola.uut.core.r_master_write_addr[29:0]
+@28
+testbench_nola.uut.core.r_master_write_ready
+@22
+testbench_nola.uut.core.r_master_write_select[3:0]
+testbench_nola.uut.core.r_pc_fetch[31:0]
+@28
+testbench_nola.uut.core.r_program_counter_valid
+@22
+testbench_nola.uut.core.r_rd1[4:0]
+testbench_nola.uut.core.r_rd3[4:0]
+testbench_nola.uut.core.r_s_data[31:0]
+@28
+testbench_nola.uut.core.w_acks[1:0]
+testbench_nola.uut.core.w_add
+testbench_nola.uut.core.w_and
+@22
+testbench_nola.uut.core.w_csr_field[11:0]
+@28
+testbench_nola.uut.core.w_destination_not_zero
+testbench_nola.uut.core.w_fct3[2:0]
+@22
+testbench_nola.uut.core.w_fct3_one_hot[7:0]
+testbench_nola.uut.core.w_fct7[6:0]
+testbench_nola.uut.core.w_fm[3:0]
+testbench_nola.uut.core.w_j_simm[31:0]
+@28
+testbench_nola.uut.core.w_jump_request
+@22
+testbench_nola.uut.core.w_jump_value[31:0]
+testbench_nola.uut.core.w_l_data[31:0]
+@28
+testbench_nola.uut.core.w_long_inst
+@22
+testbench_nola.uut.core.w_master_addr[31:0]
+testbench_nola.uut.core.w_opcode[4:0]
+@28
+testbench_nola.uut.core.w_or
+@22
+testbench_nola.uut.core.w_predecessor[3:0]
+@28
+testbench_nola.uut.core.w_rd1_conflict
+testbench_nola.uut.core.w_rd1_rdy
+@22
+testbench_nola.uut.core.w_rd[4:0]
+@28
+testbench_nola.uut.core.w_rd_not_zero
+testbench_nola.uut.core.w_read_stb
+testbench_nola.uut.core.w_readies[1:0]
+@22
+testbench_nola.uut.core.w_rxx_data[31:0]
+testbench_nola.uut.core.w_s_data[31:0]
+testbench_nola.uut.core.w_simm[31:0]
+testbench_nola.uut.core.w_simm_rs2[31:0]
+@28
+testbench_nola.uut.core.w_sll
+testbench_nola.uut.core.w_slt
+@22
+testbench_nola.uut.core.w_source1_pointer[4:0]
+testbench_nola.uut.core.w_source2_pointer[4:0]
+@28
+testbench_nola.uut.core.w_sra
+testbench_nola.uut.core.w_srl
+testbench_nola.uut.core.w_step_out
+testbench_nola.uut.core.w_sub
+@22
+testbench_nola.uut.core.w_successor[3:0]
+@28
+testbench_nola.uut.core.w_systm
+@22
+testbench_nola.uut.core.w_uimm[31:0]
+@28
+testbench_nola.uut.core.w_write_stb
+testbench_nola.uut.core.w_xor
+[pattern_trace] 1
+[pattern_trace] 0

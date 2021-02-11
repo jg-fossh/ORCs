@@ -1,0 +1,550 @@
+============================================================
+   Tang Dynasty, V4.6.18154
+   Copyright:   Shanghai Anlogic Infotech Co., Ltd.
+                2011 - 2021
+   Executable = /home/jota/TD/bin/td
+   Built by =   jota
+   Built at =   2020, Mar 27
+   Run by =     jota
+   Run Date =   Mon Jan  4 00:52:01 2021
+
+   Run on =     clrlaptop
+============================================================
+ARC-1001 : Device Initialization.
+ARC-1001 : ---------------------------------------------------------------
+ARC-1001 :            OPTION            |        IO         |   SETTING   
+ARC-1001 : ---------------------------------------------------------------
+ARC-1001 :   cso_b/cclk/mosi/miso/dout  |      V3/T13       |    gpio    
+ARC-1001 :             done             |        R17        |    gpio    
+ARC-1001 :           program_b          |        V1         |  dedicated  
+ARC-1001 :        tdi/tms/tck/tdo       |  B17/C16/A17/C17  |  dedicated  
+ARC-1001 : ---------------------------------------------------------------
+ARC-1004 : Device setting, marked 5 dedicate IOs in total.
+HDL-1007 : analyze verilog file ../ram.v
+HDL-1007 : analyze verilog file ../ORC_R32IMAZicsr.v
+HDL-1007 : analyze verilog file ../Memory_Backplane.v
+HDL-1007 : analyze verilog file ../HCC_Arithmetic_Processor.v
+HDL-8007 ERROR: syntax error near '.' in ../HCC_Arithmetic_Processor.v(161)
+HDL-8007 ERROR: ignore module module due to previous errors in ../HCC_Arithmetic_Processor.v(197)
+HDL-1007 : Verilog file '../HCC_Arithmetic_Processor.v' ignored due to errors
+HDL-1007 : analyze verilog file ../Hart_Core.v
+HDL-1007 : analyze verilog file ../Goldschmidt_Convergence_Division.v
+HDL-1007 : analyze verilog file ../anlogic_mul.v
+HDL-1007 : analyze verilog file ../ram.v
+HDL-1007 : analyze verilog file ../ORC_R32IMAZicsr.v
+HDL-1007 : analyze verilog file ../Memory_Backplane.v
+HDL-1007 : analyze verilog file ../HCC_Arithmetic_Processor.v
+HDL-5007 WARNING: identifier 'w_product_bits_select' is used before its declaration in ../HCC_Arithmetic_Processor.v(99)
+HDL-1007 : analyze verilog file ../Hart_Core.v
+HDL-1007 : analyze verilog file ../Goldschmidt_Convergence_Division.v
+HDL-1007 : analyze verilog file ../anlogic_mul.v
+HDL-1007 : analyze verilog file ../ram.v
+HDL-1007 : analyze verilog file ../ORC_R32IMAZicsr.v
+HDL-1007 : analyze verilog file ../Memory_Backplane.v
+HDL-1007 : analyze verilog file ../HCC_Arithmetic_Processor.v
+HDL-5007 WARNING: identifier 'w_product_bits_select' is used before its declaration in ../HCC_Arithmetic_Processor.v(99)
+HDL-1007 : analyze verilog file ../Hart_Core.v
+HDL-1007 : analyze verilog file ../Goldschmidt_Convergence_Division.v
+HDL-1007 : analyze verilog file ../anlogic_mul.v
+RUN-1002 : start command "elaborate -top ORC_R32IMAZicsr"
+HDL-1007 : elaborate module ORC_R32IMAZicsr in ../ORC_R32IMAZicsr.v(44)
+HDL-1007 : elaborate module Hart_Core in ../Hart_Core.v(45)
+HDL-1007 : elaborate module HCC_Arithmetic_Processor(P_HCC_FACTORS_MSB=31,P_HCC_MEM_ADDR_MSB=4,P_HCC_DIV_ACCURACY=3) in ../HCC_Arithmetic_Processor.v(45)
+HDL-1007 : elaborate module Integer_Multiplier in ../anlogic_mul.v(14)
+HDL-1007 : elaborate module EG_LOGIC_MULT(INPUT_WIDTH_A=64,INPUT_WIDTH_B=64,OUTPUT_WIDTH=128,INPUTREGA="DISABLE",INPUTREGB="DISABLE",IMPLEMENT="DSP") in /home/jota/TD/arch/eagle_macro.v(280)
+HDL-1007 : elaborate module Goldschmidt_Convergence_Division(P_GCD_FACTORS_MSB=31,P_GCD_ACCURACY=3,P_GCD_MEM_ADDR_MSB=4) in ../Goldschmidt_Convergence_Division.v(57)
+HDL-1007 : elaborate module Memory_Backplane(P_MEM_ADDR_MSB=4,P_MEM_DEPTH=32,P_MEM_WIDTH=32,P_NUM_GENERAL_REGS=32) in ../Memory_Backplane.v(44)
+HDL-1007 : elaborate module BRAM in ../ram.v(14)
+HDL-1007 : elaborate module EG_LOGIC_BRAM(DATA_WIDTH_A=32,DATA_WIDTH_B=32,ADDR_WIDTH_A=5,ADDR_WIDTH_B=5,DATA_DEPTH_A=32,DATA_DEPTH_B=32,MODE="PDPW",IMPLEMENT="9K(FAST)") in /home/jota/TD/arch/eagle_macro.v(1072)
+HDL-1200 : Current top model is ORC_R32IMAZicsr
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "read_adc ../PriMER.adc"
+RUN-1002 : start command "set_pin_assignment i_clk  LOCATION = K14;  "
+RUN-1002 : start command "set_pin_assignment i_reset_sync  LOCATION = K16; "
+USR-8027 ERROR: Location K16 is for dedicated pin! Choose another pin for normal use.
+USR-8064 ERROR: Read ../PriMER.adc error-out.
+GUI-8309 ERROR: Failed to read adc ../PriMER.adc.
+HDL-1007 : analyze verilog file ../ram.v
+HDL-1007 : analyze verilog file ../ORC_R32IMAZicsr.v
+HDL-1007 : analyze verilog file ../Memory_Backplane.v
+HDL-1007 : analyze verilog file ../HCC_Arithmetic_Processor.v
+HDL-5007 WARNING: identifier 'w_product_bits_select' is used before its declaration in ../HCC_Arithmetic_Processor.v(99)
+HDL-1007 : analyze verilog file ../Hart_Core.v
+HDL-1007 : analyze verilog file ../Goldschmidt_Convergence_Division.v
+HDL-1007 : analyze verilog file ../anlogic_mul.v
+RUN-1002 : start command "import_device eagle_s20.db -package BG256"
+ARC-1001 : Device Initialization.
+ARC-1001 : ------------------------------------------------------------------
+ARC-1001 :            OPTION            |          IO          |   SETTING   
+ARC-1001 : ------------------------------------------------------------------
+ARC-1001 :   cso_b/cclk/mosi/miso/dout  |  T3/R11/T10/P10/S11  |    gpio    
+ARC-1001 :             done             |         P13          |    gpio    
+ARC-1001 :           program_b          |          T2          |  dedicated  
+ARC-1001 :        tdi/tms/tck/tdo       |   C12/A15/C14/E14    |  dedicated  
+ARC-1001 : ------------------------------------------------------------------
+ARC-1004 : Device setting, marked 5 dedicate IOs in total.
+HDL-1007 : analyze verilog file ../ram.v
+HDL-1007 : analyze verilog file ../ORC_R32IMAZicsr.v
+HDL-1007 : analyze verilog file ../Memory_Backplane.v
+HDL-1007 : analyze verilog file ../HCC_Arithmetic_Processor.v
+HDL-5007 WARNING: identifier 'w_product_bits_select' is used before its declaration in ../HCC_Arithmetic_Processor.v(99)
+HDL-1007 : analyze verilog file ../Hart_Core.v
+HDL-1007 : analyze verilog file ../Goldschmidt_Convergence_Division.v
+HDL-1007 : analyze verilog file ../anlogic_mul.v
+RUN-1002 : start command "elaborate -top ORC_R32IMAZicsr"
+HDL-1007 : elaborate module ORC_R32IMAZicsr in ../ORC_R32IMAZicsr.v(44)
+HDL-1007 : elaborate module Hart_Core in ../Hart_Core.v(45)
+HDL-1007 : elaborate module HCC_Arithmetic_Processor(P_HCC_FACTORS_MSB=31,P_HCC_MEM_ADDR_MSB=4,P_HCC_DIV_ACCURACY=3) in ../HCC_Arithmetic_Processor.v(45)
+HDL-1007 : elaborate module Integer_Multiplier in ../anlogic_mul.v(14)
+HDL-1007 : elaborate module EG_LOGIC_MULT(INPUT_WIDTH_A=64,INPUT_WIDTH_B=64,OUTPUT_WIDTH=128,INPUTREGA="DISABLE",INPUTREGB="DISABLE",IMPLEMENT="DSP") in /home/jota/TD/arch/eagle_macro.v(280)
+HDL-1007 : elaborate module Goldschmidt_Convergence_Division(P_GCD_FACTORS_MSB=31,P_GCD_ACCURACY=3,P_GCD_MEM_ADDR_MSB=4) in ../Goldschmidt_Convergence_Division.v(57)
+HDL-1007 : elaborate module Memory_Backplane(P_MEM_ADDR_MSB=4,P_MEM_DEPTH=32,P_MEM_WIDTH=32,P_NUM_GENERAL_REGS=32) in ../Memory_Backplane.v(44)
+HDL-1007 : elaborate module BRAM in ../ram.v(14)
+HDL-1007 : elaborate module EG_LOGIC_BRAM(DATA_WIDTH_A=32,DATA_WIDTH_B=32,ADDR_WIDTH_A=5,ADDR_WIDTH_B=5,DATA_DEPTH_A=32,DATA_DEPTH_B=32,MODE="PDPW",IMPLEMENT="9K(FAST)") in /home/jota/TD/arch/eagle_macro.v(1072)
+HDL-1200 : Current top model is ORC_R32IMAZicsr
+HDL-1100 : Inferred 0 RAMs.
+RUN-1002 : start command "read_adc ../PriMER.adc"
+RUN-1002 : start command "set_pin_assignment i_clk  LOCATION = K14;  "
+RUN-1002 : start command "set_pin_assignment i_reset_sync  LOCATION = K16; "
+USR-6010 WARNING: ADC constraints: pin i_inst_read_ack has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_inst_read_data[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_ack has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_read_data[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin i_master_write_ack has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_addr[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_inst_read_stb has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_addr[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_read_stb has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_addr[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[31] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[30] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[29] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[28] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[27] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[26] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[25] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[24] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[23] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[22] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[21] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[20] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[19] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[18] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[17] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[16] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[15] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[14] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[13] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[12] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[11] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[10] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[9] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[8] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[7] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[6] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[5] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[4] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_data[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_sel[3] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_sel[2] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_sel[1] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_sel[0] has no constraint.
+USR-6010 WARNING: ADC constraints: pin o_master_write_stb has no constraint.
+RUN-1002 : start command "optimize_rtl"
+RUN-1001 : Open license file /home/jota/TD/license/Anlogic.lic
+SYN-1012 : SanityCheck: Model "ORC_R32IMAZicsr"
+SYN-1012 : SanityCheck: Model "Hart_Core"
+SYN-1012 : SanityCheck: Model "Memory_Backplane(P_MEM_ADDR_MSB=4,P_MEM_DEPTH=32,P_MEM_WIDTH=32,P_NUM_GENERAL_REGS=32)"
+SYN-1012 : SanityCheck: Model "BRAM"
+SYN-1012 : SanityCheck: Model "HCC_Arithmetic_Processor(P_HCC_FACTORS_MSB=31,P_HCC_MEM_ADDR_MSB=4,P_HCC_DIV_ACCURACY=3)"
+SYN-1012 : SanityCheck: Model "Goldschmidt_Convergence_Division(P_GCD_FACTORS_MSB=31,P_GCD_ACCURACY=3,P_GCD_MEM_ADDR_MSB=4)"
+SYN-1012 : SanityCheck: Model "Integer_Multiplier"
+SYN-1016 : Merged 189 instances.
+SYN-1016 : Merged 20 instances.
+SYN-1033 : Infer 1 multiplier IP
+SYN-1011 : Flatten model ORC_R32IMAZicsr
+SYN-1011 : Flatten model Hart_Core
+SYN-1011 : Flatten model Memory_Backplane(P_MEM_ADDR_MSB=4,P_MEM_DEPTH=32,P_MEM_WIDTH=32,P_NUM_GENERAL_REGS=32)
+SYN-1011 : Flatten model BRAM
+SYN-1016 : Merged 4 instances.
+SYN-1011 : Flatten model HCC_Arithmetic_Processor(P_HCC_FACTORS_MSB=31,P_HCC_MEM_ADDR_MSB=4,P_HCC_DIV_ACCURACY=3)
+SYN-1011 : Flatten model Goldschmidt_Convergence_Division(P_GCD_FACTORS_MSB=31,P_GCD_ACCURACY=3,P_GCD_MEM_ADDR_MSB=4)
+SYN-1011 : Flatten model Integer_Multiplier
+SYN-1016 : Merged 3 instances.
+SYN-1016 : Merged 117 instances.
+SYN-1014 : Optimize round 1
+SYN-1032 : 5269/281 useful/useless nets, 4713/214 useful/useless insts
+SYN-1019 : Optimized 14 mux instances.
+SYN-1020 : Optimized 781 distributor mux.
+SYN-1016 : Merged 1757 instances.
+SYN-1015 : Optimize round 1, 3409 better
+SYN-1014 : Optimize round 2
+SYN-1044 : Optimized 1 inv instances.
+SYN-1032 : 4031/578 useful/useless nets, 3475/816 useful/useless insts
+SYN-1019 : Optimized 2 mux instances.
+SYN-1016 : Merged 2 instances.
+SYN-1015 : Optimize round 2, 848 better
+SYN-1014 : Optimize round 3
+SYN-1032 : 3992/11 useful/useless nets, 3436/11 useful/useless insts
+SYN-1017 : Remove 1 const input seq instances
+SYN-1002 :     mul_div_processor/div/reg5_b21
+SYN-1019 : Optimized 0 mux instances.
+SYN-1015 : Optimize round 3, 21 better
+SYN-1014 : Optimize round 4
+SYN-1032 : 3991/0 useful/useless nets, 3435/0 useful/useless insts
+SYN-1019 : Optimized 0 mux instances.
+SYN-1015 : Optimize round 4, 0 better
+RUN-1003 : finish command "optimize_rtl" in  14.471926s wall, 14.680000s user + 0.050000s system = 14.730000s CPU (101.8%)
+
+RUN-1004 : used memory is 173 MB, reserved memory is 192 MB, peak memory is 192 MB
+RUN-1002 : start command "report_area -file anlogic_orc_rtl.area"
+RUN-1001 : standard
+***Report Model: ORC_R32IMAZicsr***
+
+IO Statistics
+#IO                   204
+  #input               69
+  #output             135
+  #inout                0
+
+Gate Statistics
+#Basic gates         1657
+  #and                142
+  #nand                 0
+  #or                  87
+  #nor                  0
+  #xor                 33
+  #xnor                 0
+  #buf                  0
+  #not                149
+  #bufif1               0
+  #MX21               784
+  #FADD                 0
+  #DFF                462
+  #LATCH                0
+#MACRO_ADD             23
+#MACRO_EQ              41
+#MACRO_MULT             1
+#MACRO_MUX           1709
+
+RUN-1001 : 
+Report Hierarchy Area:
++--------------------------------------------------+
+|Instance |Module          |gates  |seq    |macros |
++--------------------------------------------------+
+|top      |ORC_R32IMAZicsr |1195   |462    |67     |
++--------------------------------------------------+
+
+RUN-1002 : start command "export_db anlogic_orc_rtl.db"
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported flow parameters
+RUN-1003 : finish command "export_db anlogic_orc_rtl.db" in  2.381196s wall, 2.370000s user + 0.050000s system = 2.420000s CPU (101.6%)
+
+RUN-1004 : used memory is 242 MB, reserved memory is 258 MB, peak memory is 258 MB
+RUN-1002 : start command "optimize_gate -packarea anlogic_orc_gate.area"
+RUN-1001 : Open license file /home/jota/TD/license/Anlogic.lic
+SYN-2001 : Map 204 IOs to PADs
+SYN-2501 : Processed 0 LOGIC_BUF instances.
+SYN-2512 : LOGIC BRAM "mem_access_controller/mem_space0/inst"
+SYN-2512 : LOGIC BRAM "mem_access_controller/mem_space1/inst"
+SYN-2571 : Map 1 macro multiplier
+SYN-2571 : Optimize after map_dsp, round 1
+SYN-1032 : 5105/84 useful/useless nets, 3655/1 useful/useless insts
+SYN-2571 : Optimize after map_dsp, round 1, 85 better
+SYN-2571 : Optimize after map_dsp, round 2
+SYN-1032 : 5105/0 useful/useless nets, 3655/0 useful/useless insts
+SYN-2571 : Optimize after map_dsp, round 2, 0 better
+SYN-2501 : Optimize round 1
+SYN-1032 : 5228/0 useful/useless nets, 4028/0 useful/useless insts
+SYN-1016 : Merged 127 instances.
+SYN-2501 : Optimize round 1, 337 better
+SYN-2501 : Optimize round 2
+SYN-1032 : 5101/0 useful/useless nets, 3901/0 useful/useless insts
+SYN-2501 : Optimize round 2, 0 better
+SYN-2501 : Map 29 macro adder
+SYN-3001 : Mapper mapped 7 instances into 1 LUTs, name keeping = 100%.
+SYN-2501 : Inferred 1 ROM instances
+SYN-1032 : 7567/0 useful/useless nets, 6367/0 useful/useless insts
+SYN-3001 : Running gate level optimization.
+SYN-2581 : Mapping with K=4, #lut = 2514 (3.48), #lev = 10 (4.29)
+SYN-2551 : Post LUT mapping optimization.
+SYN-3001 : Logic optimization runtime opt =   1.07 sec, map =   0.00 sec
+SYN-3001 : Mapper mapped 4579 instances into 2488 LUTs, name keeping = 37%.
+SYN-3001 : Mapper removed 5 lut buffers
+SYN-1001 : Packing model "ORC_R32IMAZicsr" ...
+SYN-4010 : Pack lib has 42 rtl pack models with 15 top pack blocks
+SYN-1014 : Optimize round 1
+SYN-1032 : 5454/0 useful/useless nets, 4254/0 useful/useless insts
+SYN-1015 : Optimize round 1, 0 better
+SYN-4002 : Packing 452 DFF/LATCH to SEQ ...
+SYN-4009 : Pack 12 carry chain into lslice
+SYN-4007 : Packing 529 adder to BLE ...
+SYN-4008 : Packed 529 adder and 6 SEQ to BLE.
+SYN-4007 : Packing 0 gate4 to BLE ...
+SYN-4008 : Packed 0 gate4 and 0 SEQ to BLE.
+SYN-4012 : Packed 0 FxMUX
+SYN-4007 : Packing 0 MUX to BLE ...
+SYN-4008 : Packed 0 MUX and 0 SEQ to BLE.
+SYN-4007 : Packing 2484 LUT to BLE ...
+SYN-4008 : Packed 2484 LUT and 306 SEQ to BLE.
+SYN-4003 : Packing 140 remaining SEQ's ...
+SYN-4004 : #0: Packed 0 SEQ (140 nodes)...
+SYN-4004 : #1: Packed 140 SEQ (140 nodes)...
+SYN-4005 : Packed 140 SEQ with LUT/SLICE
+SYN-4006 : 2046 single LUT's are left
+SYN-4006 : 0 single SEQ's are left
+SYN-4011 : Packing model "ORC_R32IMAZicsr" (AL_USER_NORMAL) with 2484/3123 primitive instances ...
+RUN-1002 : start command "report_area -file anlogic_orc_gate.area"
+RUN-1001 : standard
+***Report Model: ORC_R32IMAZicsr***
+
+IO Statistics
+#IO                   204
+  #input               69
+  #output             135
+  #inout                0
+
+Utilization Statistics
+#lut                 3310   out of  19600   16.89%
+#reg                  452   out of  19600    2.31%
+#le                  3310
+  #lut only          2858   out of   3310   86.34%
+  #reg only             0   out of   3310    0.00%
+  #lut&reg            452   out of   3310   13.66%
+#dsp                   15   out of     29   51.72%
+#bram                   4   out of     64    6.25%
+  #bram9k               4
+  #fifo9k               0
+#bram32k                0   out of     16    0.00%
+#pad                  204   out of    188  108.51%
+  #ireg                 9
+  #oreg                 1
+  #treg                 0
+#pll                    0   out of      4    0.00%
+
+RUN-1001 : 
+Report Hierarchy Area:
++-----------------------------------------------+
+|Instance |Module          |le    |lut   |seq   |
++-----------------------------------------------+
+|top      |ORC_R32IMAZicsr |3310  |3310  |452   |
++-----------------------------------------------+
+
+RUN-1003 : finish command "optimize_gate -packarea anlogic_orc_gate.area" in  6.835543s wall, 6.500000s user + 0.310000s system = 6.810000s CPU (99.6%)
+
+RUN-1004 : used memory is 241 MB, reserved memory is 280 MB, peak memory is 280 MB
+RUN-1002 : start command "legalize_phy_inst"
+SYN-1011 : Flatten model ORC_R32IMAZicsr
+RUN-1002 : start command "export_db anlogic_orc_gate.db"
+RUN-1001 : Exported /
+RUN-1001 : Exported libs
+RUN-1001 : Exported entities
+RUN-1001 : Exported ports
+RUN-1001 : Exported pins
+RUN-1001 : Exported instances
+RUN-1001 : Exported nets
+RUN-1001 : Exported buses
+RUN-1001 : Exported models
+RUN-1001 : Exported congestions
+RUN-1001 : Exported violations
+RUN-1001 : Exported IO constraints
+RUN-1001 : Exported Inst constraints
+RUN-1001 : Exported flow parameters
+RUN-1003 : finish command "export_db anlogic_orc_gate.db" in  4.036459s wall, 3.950000s user + 0.080000s system = 4.030000s CPU (99.8%)
+
+RUN-1004 : used memory is 273 MB, reserved memory is 320 MB, peak memory is 320 MB
+RUN-1002 : start command "place"
+RUN-1001 : Open license file /home/jota/TD/license/Anlogic.lic
+PHY-3001 : Placer runs in 4 thread(s).
+SYN-4024 : Net "i_clk_pad" drive clk pins.
+SYN-4025 : Tag rtl::Net i_clk_pad as clock net
+SYN-4026 : Tagged 1 rtl::Net as clock net
+PHY-1001 : Populate physical database.
+RUN-1001 : There are total 1881 instances
+RUN-1001 : 828 mslices, 827 lslices, 204 pads, 4 brams, 15 dsps
+RUN-1001 : There are total 4478 nets
+RUN-1001 : 3229 nets have 2 pins
+RUN-1001 : 929 nets have [3 - 5] pins
+RUN-1001 : 169 nets have [6 - 10] pins
+RUN-1001 : 57 nets have [11 - 20] pins
+RUN-1001 : 83 nets have [21 - 99] pins
+RUN-1001 : 11 nets have 100+ pins
+PHY-9016 ERROR: Design's pad number = 204, exceeds the limit 188.
+RUN-1002 : start command "place"
+RUN-1001 : Open license file /home/jota/TD/license/Anlogic.lic
+PHY-3001 : Placer runs in 4 thread(s).
+SYN-4024 : Net "i_clk_pad" drive clk pins.
+SYN-4025 : Tag rtl::Net i_clk_pad as clock net
+SYN-4026 : Tagged 1 rtl::Net as clock net
+PHY-1001 : Populate physical database.
+PHY-9016 ERROR: Design's pad number = 204, exceeds the limit 188.
