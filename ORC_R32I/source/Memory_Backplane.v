@@ -33,7 +33,7 @@
 // File name     : Memory_Backplane.v
 // Author        : Jose R Garcia
 // Created       : 2020/12/23 14:17:03
-// Last modified : 2021/02/09 11:07:17
+// Last modified : 2021/02/12 13:36:05
 // Project Name  : ORCs
 // Module Name   : Memory_Backplane
 // Description   : The Memory_Backplane controls access to the DRAMs.
@@ -135,50 +135,50 @@ module Memory_Backplane #(
     end
   endgenerate
 
-generate
-  if (P_MEM_ANLOGIC_DRAM == 1) begin
-    ///////////////////////////////////////////////////////////////////////////////
-    // Instance    : General Purpose Registers 0
-    // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
-    ///////////////////////////////////////////////////////////////////////////////
-    EG_LOGIC_DRAM #(
-      .INIT_FILE("NONE"),
-      .DATA_WIDTH_W(P_MEM_WIDTH),
-      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
-      .DATA_DEPTH_W(P_MEM_DEPTH),
-      .DATA_WIDTH_R(P_MEM_WIDTH),
-      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
-      .DATA_DEPTH_R(P_MEM_DEPTH)
-    ) general_regs0 (
-      .di(w_write_data),
-      .waddr(w_write_addr),
-      .wclk(i_clk),
-      .we(w_write_enable),
-      .do(o_slave_core0_read_data),
-      .raddr(i_slave_core0_read_addr)
-    );
-    
-    ///////////////////////////////////////////////////////////////////////////////
-    // Instance    : General Purpose Registers 1
-    // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
-    ///////////////////////////////////////////////////////////////////////////////
-    EG_LOGIC_DRAM #(
-      .INIT_FILE("NONE"),
-      .DATA_WIDTH_W(P_MEM_WIDTH),
-      .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
-      .DATA_DEPTH_W(P_MEM_DEPTH),
-      .DATA_WIDTH_R(P_MEM_WIDTH),
-      .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
-      .DATA_DEPTH_R(P_MEM_DEPTH)
-    ) general_regs1 (
-      .di(w_write_data),
-      .waddr(w_write_addr),
-      .wclk(i_clk),
-      .we(w_write_enable),
-      .do(o_slave_core1_read_data),
-      .raddr(i_slave_core1_read_addr)
-    );
-  end
-endgenerate
+  generate
+    if (P_MEM_ANLOGIC_DRAM == 1) begin
+      ///////////////////////////////////////////////////////////////////////////////
+      // Instance    : General Purpose Registers 0
+      // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
+      ///////////////////////////////////////////////////////////////////////////////
+      EG_LOGIC_DRAM #(
+        .INIT_FILE("NONE"),
+        .DATA_WIDTH_W(P_MEM_WIDTH),
+        .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
+        .DATA_DEPTH_W(P_MEM_DEPTH),
+        .DATA_WIDTH_R(P_MEM_WIDTH),
+        .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
+        .DATA_DEPTH_R(P_MEM_DEPTH)
+      ) general_regs0 (
+        .di(w_write_data),
+        .waddr(w_write_addr),
+        .wclk(i_clk),
+        .we(w_write_enable),
+        .do(o_slave_core0_read_data),
+        .raddr(i_slave_core0_read_addr)
+      );
+      
+      ///////////////////////////////////////////////////////////////////////////////
+      // Instance    : General Purpose Registers 1
+      // Description : Anlogic IP EG_LOGIC_DRAM, TD version 4.6.18154
+      ///////////////////////////////////////////////////////////////////////////////
+      EG_LOGIC_DRAM #(
+        .INIT_FILE("NONE"),
+        .DATA_WIDTH_W(P_MEM_WIDTH),
+        .ADDR_WIDTH_W(P_MEM_ADDR_MSB+1),
+        .DATA_DEPTH_W(P_MEM_DEPTH),
+        .DATA_WIDTH_R(P_MEM_WIDTH),
+        .ADDR_WIDTH_R(P_MEM_ADDR_MSB+1),
+        .DATA_DEPTH_R(P_MEM_DEPTH)
+      ) general_regs1 (
+        .di(w_write_data),
+        .waddr(w_write_addr),
+        .wclk(i_clk),
+        .we(w_write_enable),
+        .do(o_slave_core1_read_data),
+        .raddr(i_slave_core1_read_addr)
+      );
+    end
+  endgenerate
 
 endmodule

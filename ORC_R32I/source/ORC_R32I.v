@@ -30,13 +30,13 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 /////////////////////////////////////////////////////////////////////////////////
-// File name     : ORC_R32IMAZicsr.v
+// File name     : ORC_R32I.v
 // Author        : Jose R Garcia
 // Created       : 2020/11/04 23:20:43
-// Last modified : 2021/02/09 11:03:35
+// Last modified : 2021/02/12 13:37:18
 // Project Name  : ORCs
-// Module Name   : ORC_R32IMAZicsr
-// Description   : The ORC_R32IMAZicsr is the top level wrapper.
+// Module Name   : ORC_R32I
+// Description   : The ORC_R32I is the top level wrapper.
 //
 // Additional Comments:
 //   
@@ -49,7 +49,7 @@ module ORC_R32I #(
   parameter integer P_MEMORY_DEPTH       = 32, //
   parameter integer P_MEMORY_HAS_INIT    = 0,  // 0=No init file, 1=loads memory init file
   parameter         P_MEMORY_FILE        = 0,  // File name and directory "./example.txt"
-  parameter integer P_IS_ANLOGIC         = 1   //
+  parameter integer P_IS_ANLOGIC         = 0   //
 )(
   // Processor's clocks and resets
   input i_clk,        // clock
