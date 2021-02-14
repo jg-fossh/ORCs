@@ -1,2 +1,0 @@
-set_pin_assignment {i_clk} { LOCATION = K14;  }
-set_pin_assignment {i_reset_sync} { LOCATION = K16; }

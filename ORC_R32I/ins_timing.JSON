@@ -1,8 +1,0 @@
-{signal: [
-  {name: 'i_clk', wave: 'n.....|........'},
-  {name: 'i_inst_read_stb', wave: '010...|1...010.'},
-  {name: 'i_inst_read_ack', wave: '0..10.|.1...010'},
-  {name: 'i_inst_read_addr[31:0]', wave: 'x3x...|4.56x7x.', data: ['addr', 'addr', 'addr', 'addr', 'addr']},
-  {name: 'i_inst_read_data[31:0]', wave: 'x..3x.|.4.56x7x', data: ['data', 'data', 'data', 'data', 'data']},
-  {name: 'i_inst_read_sel[3:0]', wave: 'x3x...|.4.56x7x', data: ['be', 'be', 'be', 'be', 'be']}
-]}
