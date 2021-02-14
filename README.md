@@ -131,29 +131,28 @@ Signals               | Initial State | Dimension | Direction | Definition
 Parameters              | Default | Description
 :---------------------- | :-----: | :--------------------------------------------------------------------------------------------------------------------------
 `P_FETCH_COUNTER_RESET` |    0    | Initial address fetched by the Instruction WB Read.
-`P_MEMORY_ADDR_MSB`     |    4    | Log2(Number_Of_Total_Register)-1
-`P_MEMORY_DEPTH`        |   32    | Memory space depth.
+`P_MEMORY_ADDR_MSB`     |    3    | Log2(Number_Of_Total_Register)-1
+`P_MEMORY_DEPTH`        |   16    | Memory space depth.
 `P_IS_ANLOGIC`          |    0    | When '0' it generates generic BRAM and multiplier. When '1' it generates ANLOGIC BRAMs and DSPs targeting the SiPEED board.
 
 ## 6 Memory Map
 
 Memory Space | Address Range | Description
 :----------: | :-----------: | :-----------------
-    mem0     |    [0:31]     | General Registers.
-    mem1     |    [0:31]     | General Registers.
+    mem      |    [0:15]     | General Registers.
 
 ### 6.1 General Register, mem0 and mem1
 
 Address                   | Bits | Access | Reset       | Description
 :-----------------------: | :--: | :----: | :---------: | :----------------
-[0x0000_0000:0x0000_001F] | 31:0 | RW     | 0x0000_0000 | General register.
+[0x0000_0000:0x0000_000F] | 31:0 | RW     | 0x0000_0000 | General register.
 
 
 ## 7 Resource Costs
 
 ### 7.1 Sipeed_PriMER (Anlogic Eagle FPGA)
 
-_These results should be considered experimental as work is still under progress and this only accounts for I and M instructions. Remember to set P_IS_ANLOGIC = 1 in the ORC_R32E module_
+_Remember to set P_IS_ANLOGIC = 1 in the ORC_R32E module_
 
 
 |Utilization Statistics|     |                  |       |
