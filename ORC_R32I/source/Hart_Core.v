@@ -33,7 +33,7 @@
 // File name     : Hart_Core.v
 // Author        : Jose R Garcia
 // Created       : 2020/12/06 00:33:28
-// Last modified : 2021/02/12 13:22:10
+// Last modified : 2021/02/13 20:08:46
 // Project Name  : ORCs
 // Module Name   : Hart_Core
 // Description   : The Hart_Core is a machine mode capable hart, implementation
@@ -76,13 +76,6 @@ module Hart_Core #(
   output [31:0] o_master_write_addr, // WB address
   output [31:0] o_master_write_data, // WB data
   output [3:0]  o_master_write_sel,  // WB byte enable
-  // MUL Processor Interface
-  output       o_master_mul_stb,  // start pulse
-  output [1:0] o_master_mul_tga,  // signed/uynsigned
-  // DIV Processor Interface
-  output       o_master_div_stb,  // start pulse
-  output [1:0] o_master_div_tga,  // 0=div, 1=rem
-  input        i_master_div_ack,  // done pulse
   // CSR Interface
   output       o_csr_instr_decoded, // Indicates an instruction was decode.
   output       o_csr_read_stb,      //
