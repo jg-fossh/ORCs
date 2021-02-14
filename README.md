@@ -1,4 +1,4 @@
-# ORC_R32I Synthesizable Unit Specification
+# ORC_R32E Synthesizable Unit Specification
 
 Document        | Metadata
 :-------------- | :------------------
@@ -10,13 +10,13 @@ _Project_       | ORCs
 
 ## Abstract
 
-The ORC_R32I is an implementation of the RISC-V 32-bit 'I' ISA extensions targeting small FPGAs. It is a single threaded _hart_.
+The ORC_R32E is an implementation of the RISC-V 32-bit 'I' ISA extensions targeting small FPGAs. It is a single threaded _hart_.
 
 ## Table Of Contents
 
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
-- [ORC_R32I Synthesizable Unit Specification](#orc_r32i-synthesizable-unit-specification)
+- [ORC_R32E Synthesizable Unit Specification](#orc_r32e-synthesizable-unit-specification)
   - [Abstract](#abstract)
   - [Table Of Contents](#table-of-contents)
   - [2 Design](#2-design)
@@ -61,7 +61,7 @@ WB          | Wishbone Interface
 
 ## 2 Design
 
-The ORC_R32I uses a Harvard architecture, separating the interface used to access the instructions from the interface used to access external devices. The general purpose register are implemented in LUTRAMs or Distributed RAMs. In order to access the rs1 and rs2 simultaneously two copies of the general purpose register are created.
+The ORC_R32E uses a Harvard architecture, separating the interface used to access the instructions from the interface used to access external devices. The general purpose register are implemented in LUTRAMs or Distributed RAMs. In order to access the rs1 and rs2 simultaneously two copies of the general purpose register are created.
 
 
 ### 2.1 HART Core
@@ -96,7 +96,7 @@ Signals        | Initial State | Direction | Definition
 
 ## 4 Interfaces
 
-The ORC_R32I employs independent interfaces for reading the memory containing the instructions to be decoded and reading and writing to other devices such as memories and I/O devices.
+The ORC_R32E employs independent interfaces for reading the memory containing the instructions to be decoded and reading and writing to other devices such as memories and I/O devices.
 
 ### 4.1 Instruction WB Master Read
 
@@ -153,34 +153,34 @@ Address                   | Bits | Access | Reset       | Description
 
 ### 7.1 Sipeed_PriMER (Anlogic Eagle FPGA)
 
-_These results should be considered experimental as work is still under progress and this only accounts for I and M instructions. Remember to set P_IS_ANLOGIC = 1 in the ORC_R32I module_
+_These results should be considered experimental as work is still under progress and this only accounts for I and M instructions. Remember to set P_IS_ANLOGIC = 1 in the ORC_R32E module_
 
 
 |Utilization Statistics|     |                  |       |
 | :------------------ | ---: | :--------------: | ----: |
-| #lut                | 1995 |   out of  19600  | 10.18%|
-| #reg                |  286 |   out of  19600  |  1.46%|
-| #le                 | 2057 |          -       |     - |
-|   #lut only         | 1771 |   out of   2908  | 86.10%|
-|   #reg only         |   62 |   out of   2908  |  3.01%|
-|   #lut&reg          |  224 |   out of   2908  | 10.89%|
+| #lut                | 1532 |   out of  19600  |  7.82%|
+| #reg                |  112 |   out of  19600  |  0.57%|
+| #le                 | 1532 |          -       |     - |
+|   #lut only         | 1420 |   out of   2908  | 92.69%|
+|   #reg only         |    0 |   out of   2908  |  0.00%|
+|   #lut&reg          |  112 |   out of   2908  |  7.31%|
 | #dsp                |    0 |   out of     29  |  0.00%|
 | #bram               |    0 |   out of     64  |  0.00%|
 |   #bram9k           |    0 |        -         |  -    |
 |   #fifo9k           |    0 |        -         |   -   |
 | #bram32k            |    0 |   out of     16  |  0.00%|
 | #pad                |  204 |   out of    188  |108.51%|
-|   #ireg             |    8 |        -         |   -   |
+|   #ireg             |    4 |        -         |   -   |
 |   #oreg             |    0 |        -         |   -   |
 |   #treg             |    0 |        -         |   -   |
 | #pll                |    0 |   out of      4  |  0.00%|
 
 
 
-|Report Hierarchy Area: |     |       |       | |
+|Report Hierarchy Area: |  | | | |
 :-------- | :-------- | :---- |:------| :---- |
 | Instance | Module   | le    | lut   | seq   |
-| top      | ORC_R32I | 2057  | 1995  | 286   |
+| top      | ORC_R32E | 1532  | 1532  | 112   |
 
 
 ### 7.2 Yosys Synthesis
@@ -190,26 +190,28 @@ _These results should be considered experimental as work is still under progress
 
 | Resource                  | Usage Count |
 | :------------------------ | ----------: |
-| Number of  wire           |        2043 |
-| Number of wire bits       |       10015 |
-| Number of public wires    |        2043 |
-| Number of public wire bits|       10015 |
+| Number of  wire           |        1387 |
+| Number of wire bits       |       6876 |
+| Number of public wires    |        1387 |
+| Number of public wire bits|       6876 |
 | Number of memories        |           0 |
 | Number of memory bits     |           0 |
 | Number of processes       |           0 |
-| Number of cells<br> --- SB_CARRY <br> --- SB_DFF <br> --- SB_DFFE <br> --- SB_DFFESR  <br> --- SB_DFFESS <br> --- SB_DFFSR <br> --- SB_DFFSS <br> --- SB_LUT4 |               5176<br>393<br>16<br>1028<br>171<br>2<br>104<br>1<br>3461|
+| Number of cells<br> --- SB_CARRY <br> --- SB_DFF <br> --- SB_DFFE <br> --- SB_DFFESR  <br> --- SB_DFFESS <br> --- SB_DFFSR <br> --- SB_DFFSS <br> --- SB_LUT4 |               3288<br>299<br>17<br>516<br>67<br>2<br>38<br>1<br>2348|
 
 
 ## 8 Performance
 
 ### 8.1 Dhrystone Benchmark (Version 2.1)
 
+
+Similar performance to the ORC_R32I is expected. 
 No two Dhrystone benchmark are the same since this is a compiler/core benchmark. Therefore a third party core was benchmarked and included for comparison.
 
 Dhrystone test bench found in the picorv32 repo (https://github.com/cliffordwolf/picorv32/tree/master/dhrystone) was used and the same compiled code (hex file) on all cores for comparison.
 Implementation           | CFLAGS (-march=) | Runs |         User Time         | Cycles/Instruction | Dhrystones/Sec/MHz | DMIPS/MHz
 :----------------------- | :--------------: | :--: | :-----------------------: | :----------------: | :----------------: | :-------:
-ORC_R32I (bypass) <br> Average Expected ->  <br> Theoretical Maximums -> |       rv32i      | 100  | <br> 58072 cycles,  29036 insn <br> 39858 cycles, 29036 insn | <br> 2.000 <br> 1.372| <br> 1722 <br> 2508 | <br> 0.980 <br> 1.427
+ORC_R32E (bypass) <br> Average Expected ->  <br> Theoretical Maximums -> |       rv32i      | 100  | <br> 58072 cycles,  29036 insn <br> 39858 cycles, 29036 insn | <br> 2.000 <br> 1.372| <br> 1722 <br> 2508 | <br> 0.980 <br> 1.427
 picorv32                 |       rv32i      | 100  | 113154 cycles, 29036 insn |       3.897        |        883         |   0.502
 picorv32 (no look ahead) |       rv32i      | 100  | 153707 cycles, 29036 insn |       5.293        |        650         |   0.369
 
