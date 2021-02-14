@@ -1,0 +1,196 @@
+
+icetime topological timing analysis report
+==========================================
+
+Info: max_span_hack is enabled: estimate is conservative.
+
+Report for critical path:
+-------------------------
+
+        pre_io_27_33_0 (PRE_IO) [clk] -> DIN0: 0.240 ns
+     0.240 ns net_108698 (i_inst_read_data[15]$SB_IO_IN)
+        odrv_27_33_108698_112417 (Odrv12) I -> O: 0.540 ns
+        t15715 (Span12Mux_h12) I -> O: 0.540 ns
+        t15714 (Span12Mux_h12) I -> O: 0.540 ns
+        t15713 (Span12Mux_v12) I -> O: 0.540 ns
+        t15728 (Span12Mux_v12) I -> O: 0.540 ns
+        t15760 (LocalMux) I -> O: 0.330 ns
+        inmux_3_6_13026_13071 (InMux) I -> O: 0.260 ns
+        lc40_3_6_7 (LogicCell40) in1 -> lcout: 0.400 ns
+     3.929 ns net_8884 (i_inst_read_data[15]$SB_IO_IN)
+        odrv_3_6_8884_4618 (Odrv4) I -> O: 0.372 ns
+        t4184 (Span4Mux_v4) I -> O: 0.372 ns
+        t4183 (LocalMux) I -> O: 0.330 ns
+        inmux_5_4_20927_20937 (InMux) I -> O: 0.260 ns
+        lc40_5_4_0 (LogicCell40) in1 -> lcout: 0.400 ns
+     5.662 ns net_16785 (core.i_master_core0_read_data_SB_LUT4_O_29_I1_SB_LUT4_O_I0_SB_LUT4_O_I3[3])
+        t6333 (LocalMux) I -> O: 0.330 ns
+        inmux_4_5_16957_17019 (InMux) I -> O: 0.260 ns
+        lc40_4_5_6 (LogicCell40) in1 -> lcout: 0.400 ns
+     6.651 ns net_12837 (core.i_master_core0_read_data_SB_LUT4_O_29_I1_SB_LUT4_O_I0[2])
+        t5557 (LocalMux) I -> O: 0.330 ns
+        inmux_3_4_12779_12826 (InMux) I -> O: 0.260 ns
+        t216 (CascadeMux) I -> O: 0.000 ns
+        lc40_3_4_7 (LogicCell40) in2 -> lcout: 0.379 ns
+     7.618 ns net_8638 (core.i_master_core0_read_data_SB_LUT4_O_29_I1[0])
+        t4162 (LocalMux) I -> O: 0.330 ns
+        inmux_3_3_12633_12701 (InMux) I -> O: 0.260 ns
+        lc40_3_3_7 (LogicCell40) in0 -> lcout: 0.449 ns
+     8.656 ns net_8515 (w_core0_read_data[3])
+        odrv_3_3_8515_4213 (Odrv4) I -> O: 0.372 ns
+        t4123 (Span4Mux_v4) I -> O: 0.372 ns
+        t4128 (Span4Mux_v4) I -> O: 0.372 ns
+        t4127 (Span4Mux_v4) I -> O: 0.372 ns
+        t4126 (Span4Mux_v4) I -> O: 0.372 ns
+        t4125 (Span4Mux_h4) I -> O: 0.316 ns
+        t4124 (LocalMux) I -> O: 0.330 ns
+        inmux_6_19_26825_26877 (InMux) I -> O: 0.260 ns
+        lc40_6_19_3 (LogicCell40) in1 -> lcout: 0.400 ns
+    11.819 ns net_22710 (core.w_simm[3])
+        odrv_6_19_22710_22492 (Odrv4) I -> O: 0.372 ns
+        t7936 (Span4Mux_h4) I -> O: 0.316 ns
+        t7935 (Span4Mux_h4) I -> O: 0.316 ns
+        t7934 (Span4Mux_v4) I -> O: 0.372 ns
+        t7933 (Span4Mux_h4) I -> O: 0.316 ns
+        t7932 (LocalMux) I -> O: 0.330 ns
+        inmux_15_11_61864_61921 (InMux) I -> O: 0.260 ns
+        lc40_15_11_4 (LogicCell40) in3 -> lcout: 0.316 ns
+    14.414 ns net_57747 (mem_access_controller.w_write_data_SB_LUT4_O_10_I0_SB_LUT4_O_I0_SB_LUT4_O_1_I1_SB_LUT4_O_1_I0_SB_LUT4_O_I1[0])
+        odrv_15_11_57747_53801 (Odrv4) I -> O: 0.372 ns
+        t12538 (Span4Mux_v4) I -> O: 0.372 ns
+        t12537 (LocalMux) I -> O: 0.330 ns
+        inmux_12_9_49392_49437 (InMux) I -> O: 0.260 ns
+        t1464 (CascadeMux) I -> O: 0.000 ns
+        lc40_12_9_3 (LogicCell40) in2 -> carryout: 0.231 ns
+    15.978 ns net_49434 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[4])
+        lc40_12_9_4 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.105 ns net_49440 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[5])
+        lc40_12_9_5 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.231 ns net_49446 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[6])
+        lc40_12_9_6 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.357 ns net_49452 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[7])
+        lc40_12_9_7 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.483 ns net_49458 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[8])
+        t1321 (ICE_CARRY_IN_MUX) carryinitin -> carryinitout: 0.196 ns
+        lc40_12_10_0 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.806 ns net_49539 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[9])
+        lc40_12_10_1 (LogicCell40) carryin -> carryout: 0.126 ns
+    16.932 ns net_49545 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[10])
+        lc40_12_10_2 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.059 ns net_49551 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[11])
+        lc40_12_10_3 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.185 ns net_49557 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[12])
+        lc40_12_10_4 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.311 ns net_49563 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[13])
+        lc40_12_10_5 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.437 ns net_49569 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[14])
+        lc40_12_10_6 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.563 ns net_49575 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[15])
+        lc40_12_10_7 (LogicCell40) carryin -> carryout: 0.126 ns
+    17.690 ns net_49581 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[16])
+        t1327 (ICE_CARRY_IN_MUX) carryinitin -> carryinitout: 0.196 ns
+        lc40_12_11_0 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.012 ns net_49662 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[17])
+        lc40_12_11_1 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.139 ns net_49668 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[18])
+        lc40_12_11_2 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.265 ns net_49674 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[19])
+        lc40_12_11_3 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.391 ns net_49680 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[20])
+        lc40_12_11_4 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.517 ns net_49686 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[21])
+        lc40_12_11_5 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.644 ns net_49692 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[22])
+        lc40_12_11_6 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.770 ns net_49698 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[23])
+        lc40_12_11_7 (LogicCell40) carryin -> carryout: 0.126 ns
+    18.896 ns net_49704 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[24])
+        t1334 (ICE_CARRY_IN_MUX) carryinitin -> carryinitout: 0.196 ns
+        lc40_12_12_0 (LogicCell40) carryin -> carryout: 0.126 ns
+    19.219 ns net_49785 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[25])
+        lc40_12_12_1 (LogicCell40) carryin -> carryout: 0.126 ns
+    19.345 ns net_49791 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[26])
+        lc40_12_12_2 (LogicCell40) carryin -> carryout: 0.126 ns
+    19.471 ns net_49797 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[27])
+        lc40_12_12_3 (LogicCell40) carryin -> carryout: 0.126 ns
+    19.597 ns net_49803 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[28])
+        lc40_12_12_4 (LogicCell40) carryin -> carryout: 0.126 ns
+    19.724 ns net_49809 (mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[29])
+        inmux_12_12_49809_49819 (InMux) I -> O: 0.260 ns
+        lc40_12_12_5 (LogicCell40) in3 -> lcout: 0.316 ns
+    20.299 ns net_45640 (mem_access_controller.w_write_data_SB_LUT4_O_4_I0_SB_LUT4_O_I1_SB_LUT4_O_I0[2])
+        odrv_12_12_45640_49500 (Odrv4) I -> O: 0.372 ns
+        t10892 (Span4Mux_v4) I -> O: 0.372 ns
+        t10891 (Span4Mux_h4) I -> O: 0.316 ns
+        t10890 (LocalMux) I -> O: 0.330 ns
+        inmux_13_4_52850_52881 (InMux) I -> O: 0.260 ns
+        t1602 (CascadeMux) I -> O: 0.000 ns
+        lc40_13_4_0 (LogicCell40) in2 -> lcout: 0.379 ns
+    22.326 ns net_48728 (mem_access_controller.w_write_data_SB_LUT4_O_4_I0_SB_LUT4_O_I1[1])
+        odrv_13_4_48728_52577 (Odrv4) I -> O: 0.372 ns
+        t11095 (Span4Mux_v4) I -> O: 0.372 ns
+        t11094 (Span4Mux_v4) I -> O: 0.372 ns
+        t11093 (Span4Mux_h4) I -> O: 0.316 ns
+        t11092 (LocalMux) I -> O: 0.330 ns
+        inmux_10_12_41611_41645 (InMux) I -> O: 0.260 ns
+        lc40_10_12_2 (LogicCell40) in1 -> lcout: 0.400 ns
+    24.745 ns net_37483 (mem_access_controller.w_write_data_SB_LUT4_O_4_I0[0])
+        odrv_10_12_37483_30136 (Odrv4) I -> O: 0.372 ns
+        t9826 (Span4Mux_h4) I -> O: 0.316 ns
+        t9825 (Span4Mux_v4) I -> O: 0.372 ns
+        t9824 (LocalMux) I -> O: 0.330 ns
+        inmux_3_16_14232_14259 (InMux) I -> O: 0.260 ns
+        lc40_3_16_0 (LogicCell40) in1 -> lcout: 0.400 ns
+    26.793 ns net_10107 (mem_access_controller.w_write_data[29])
+        odrv_3_16_10107_9886 (Odrv4) I -> O: 0.372 ns
+        t4443 (Span4Mux_v4) I -> O: 0.372 ns
+        t4442 (Span4Mux_h4) I -> O: 0.316 ns
+        t4441 (LocalMux) I -> O: 0.330 ns
+        inmux_4_20_18807_18851 (InMux) I -> O: 0.260 ns
+    28.441 ns net_18851 (mem_access_controller.w_write_data[29])
+        lc40_4_20_4 (LogicCell40) in0 [setup]: 0.400 ns
+    28.841 ns net_14680 (core.i_master_core0_read_data_SB_LUT4_O_17_I1_SB_LUT4_O_1_I0_SB_LUT4_O_I0[0])
+
+Resolvable net names on path:
+     0.240 ns ..  5.262 ns i_inst_read_data[15]$SB_IO_IN
+     5.662 ns ..  6.251 ns core.i_master_core0_read_data_SB_LUT4_O_29_I1_SB_LUT4_O_I0_SB_LUT4_O_I3[3]
+     6.651 ns ..  7.240 ns core.i_master_core0_read_data_SB_LUT4_O_29_I1_SB_LUT4_O_I0[2]
+     7.618 ns ..  8.208 ns core.i_master_core0_read_data_SB_LUT4_O_29_I1[0]
+     8.656 ns .. 11.420 ns w_core0_read_data[3]
+    11.819 ns .. 14.099 ns core.w_simm[3]
+    14.414 ns .. 15.747 ns mem_access_controller.w_write_data_SB_LUT4_O_10_I0_SB_LUT4_O_I0_SB_LUT4_O_1_I1_SB_LUT4_O_1_I0_SB_LUT4_O_I1[0]
+    15.978 ns .. 15.978 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[4]
+    16.105 ns .. 16.105 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[5]
+    16.231 ns .. 16.231 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[6]
+    16.357 ns .. 16.357 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[7]
+    16.483 ns .. 16.680 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[8]
+    16.806 ns .. 16.806 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[9]
+    16.932 ns .. 16.932 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[10]
+    17.059 ns .. 17.059 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[11]
+    17.185 ns .. 17.185 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[12]
+    17.311 ns .. 17.311 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[13]
+    17.437 ns .. 17.437 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[14]
+    17.563 ns .. 17.563 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[15]
+    17.690 ns .. 17.886 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[16]
+    18.012 ns .. 18.012 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[17]
+    18.139 ns .. 18.139 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[18]
+    18.265 ns .. 18.265 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[19]
+    18.391 ns .. 18.391 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[20]
+    18.517 ns .. 18.517 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[21]
+    18.644 ns .. 18.644 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[22]
+    18.770 ns .. 18.770 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[23]
+    18.896 ns .. 19.092 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[24]
+    19.219 ns .. 19.219 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[25]
+    19.345 ns .. 19.345 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[26]
+    19.471 ns .. 19.471 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[27]
+    19.597 ns .. 19.597 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[28]
+    19.724 ns .. 19.983 ns mem_access_controller.w_write_data_SB_LUT4_O_5_I0_SB_LUT4_O_I1_SB_LUT4_O_I2_SB_LUT4_O_I3[29]
+    20.299 ns .. 21.947 ns mem_access_controller.w_write_data_SB_LUT4_O_4_I0_SB_LUT4_O_I1_SB_LUT4_O_I0[2]
+    22.326 ns .. 24.345 ns mem_access_controller.w_write_data_SB_LUT4_O_4_I0_SB_LUT4_O_I1[1]
+    24.745 ns .. 26.393 ns mem_access_controller.w_write_data_SB_LUT4_O_4_I0[0]
+    26.793 ns .. 28.441 ns mem_access_controller.w_write_data[29]
+                  lcout -> core.i_master_core0_read_data_SB_LUT4_O_17_I1_SB_LUT4_O_1_I0_SB_LUT4_O_I0[0]
+
+Total number of logic levels: 38
+Total path delay: 28.84 ns (34.67 MHz)
+

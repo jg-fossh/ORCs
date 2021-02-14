@@ -1,0 +1,34 @@
+standard
+***Report Model: ORC_R32E***
+
+IO Statistics
+#IO                   204
+  #input               69
+  #output             135
+  #inout                0
+
+Gate Statistics
+#Basic gates          938
+  #and                119
+  #nand                 0
+  #or                  63
+  #nor                  0
+  #xor                 32
+  #xnor                 0
+  #buf                  0
+  #not                 51
+  #bufif1               0
+  #MX21               557
+  #FADD                 0
+  #DFF                116
+  #LATCH                0
+#MACRO_ADD             11
+#MACRO_EQ              38
+#MACRO_MUX            874
+
+Report Hierarchy Area:
++-------------------------------------------+
+|Instance |Module   |gates  |seq    |macros |
++-------------------------------------------+
+|top      |ORC_R32E |822    |116    |51     |
++-------------------------------------------+
